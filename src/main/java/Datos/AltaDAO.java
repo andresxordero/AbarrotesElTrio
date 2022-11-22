@@ -1,140 +1,160 @@
-package Datos;
+package datos;
 
-import static Datos.ConexionBD.close;
-import static Datos.ConexionBD.getConnection;
-import Domain.Alta;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import dominio.Alta ;
+import java.sql.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AltaDAO {
-    private static final String SQL_SELECT ="SELECT * FROM alta";
-    private static final String SQL_SELECTXID ="SELECT alta_id,producto_id,fecha,cantidad FROM cliente where alta_id=";
-    private static final String SQL_INSERT = "INSERT INTO alta(producto_id,fecha,cantidad)VALUES";
-    private static final String SQL_DELETE = "DELETE FROM alta WHERE alta_id=";
-    
-    public List<Alta> seleccionarAltas(){
-        Connection conn=null;
+
+    private static final String SQL_SELECT = "SELECT IDAlta, IDProducto, IDProveedor, Fecha, Cantidad "
+            + " FROM alta";
+
+    private static final String SQL_SELECT_BY_ID = "SELECT IDAlta, IDProducto, IDProveedor, Fecha, Cantidad "
+            + " FROM alta WHERE IDAlta = ?";
+
+    private static final String SQL_INSERT = "INSERT INTO alta(IDProducto, IDProveedor, Fecha, Cantidad) "
+            + " VALUES(?, ?, ?, ?)";
+
+    private static final String SQL_UPDATE = "UPDATE alta "
+            + " SET IDProducto=?, IDProveedor=?, Fecha=?, Cantidad=? WHERE IDAlta=?";
+
+    private static final String SQL_DELETE = "DELETE FROM alta WHERE IDAlta = ?";
+
+    public List<Alta> listar() {
+        Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Alta alta = null;
-        List<Alta> altaList = new ArrayList<>();
+        List<Alta> altas = new ArrayList<>();
         try {
-            conn = getConnection();
-            stmt = conn.prepareStatement(SQL_SELECT); 
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
-            
-            while(rs.next()){
-            int idCliente = rs.getInt("cliente_id");
-            String nombre = rs.getString("nombre");
-            String apellido1 = rs.getString("primer_apellido");
-            String apellido2 = rs.getString("segundo_apellido");
-            
-            alta = new Alta(idCliente,nombre,apellido1,apellido2);
-            altaList.add(alta);
-            
+            while (rs.next()) {
+                int IDAlta = rs.getInt("IDAlta");
+                int IDProducto = rs.getInt("IDProducto");
+                int IDProveedor = rs.getInt("IDProveedor");
+                String Fecha = rs.getString("Fecha");
+                int Cantidad = rs.getInt("Cantidad");
+
+                alta = new Alta(IDAlta, IDProducto, IDProveedor, Fecha, Cantidad);
+                altas.add(alta);
             }
-            
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AltaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(rs);
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
         }
-        finally{
-            try {
-                close(rs);
-                close(stmt);
-                close(conn);
-            } catch (SQLException ex) {
-                 ex.printStackTrace(System.out);
-            }
-        
-        }
-        
-        return altaList;
+        return altas;
     }
-    
-    public String insertar (Alta alta){
-        String sms ="";
-       try { 
-           ConexionBD Con = new ConexionBD();
-             Con.ConectarBD();
-             Con.sentencia.execute(SQL_INSERT +"('"+alta.getNombre()+"','"+alta.getPrimer_apellido()+"','"+alta.getSegundo_apellido()+"')");
-             sms="Los Datos fueron Insertados con exito";
-             Con.DesconectarBD();
-         } catch (SQLException ex) {
-            sms=ex.toString();
-          }
-       return sms;
-    }
-    
-     public String eliminar(Alta alta){
-           String sms ="";
-       try{
-            
-            ConexionBD Con=new ConexionBD();
-            Con.ConectarBD();
-            Con.sentencia.execute(SQL_DELETE + alta.getIdAlta());
-             sms="El registro fue eliminado";
 
-            Con.DesconectarBD();
-        }catch(SQLException ex){
-            sms=ex.toString();
-        }
-       return sms;
-    }
-     
-     public Alta seleccionarAlta(int id){
-        Connection conn=null;
+    public Alta encontrar(Alta alta) {
+        Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Alta alta = null;
-         try {
-            conn = getConnection();
-            stmt = conn.prepareStatement(SQL_SELECTXID+id); 
+        try {
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
+            stmt.setInt(1, alta.getIdAlta());
             rs = stmt.executeQuery();
-            
-            while(rs.next()){
-            int idCliente = rs.getInt("cliente_id");
-            String nombre = rs.getString("nombre");
-            String apellido1 = rs.getString("primer_apellido");
-            String apellido2 = rs.getString("segundo_apellido");
-            
-            alta = new Alta(idCliente,nombre,apellido1,apellido2);
-             }
-            
+            rs.absolute(1);//nos posicionamos en el primer registro devuelto
+
+            int IDProducto = rs.getInt("IDProducto");
+            int IDProveedor = rs.getInt("IDProveedor");
+            String Fecha = rs.getString("Fecha");
+            int Cantidad = rs.getInt("Cantidad");
+
+            alta.setIdProducto(IDProducto);
+            alta.setIdProveedor(IDProveedor);
+            alta.setFecha(Fecha);
+            alta.setCantidad(Cantidad);
+
         } catch (SQLException ex) {
-            ex.printStackTrace(System.out);//Error desde la BD
-            
-        }
-        finally{
-            try {
-                close(rs);
-                close(stmt);
-                close(conn);
-            } catch (SQLException ex) {
-                 ex.printStackTrace(System.out);//Error desde la BD
-            }
-        
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AltaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(rs);
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
         }
         return alta;
-     }
-     
-     public String actualizar (Alta alta){
-       String sms ="";
-       String SQL_UPDATE ="UPDATE cliente SET nombre='"+cliente.getNombre()+"',primer_apellido='"+cliente.getPrimer_apellido()+"',segundo_apellido='"+cliente.getSegundo_apellido()+"'  WHERE cliente_id= "+cliente.getIdPersona();
-     try { 
-            ConexionBD Con=new ConexionBD();
-            Con.ConectarBD();
-            Con.sentencia.execute(SQL_UPDATE);
-            sms="Registro Actualizado";
-            Con.DesconectarBD();
-        }catch (SQLException ex) {
-           sms=ex.toString();
-        }
-       return sms;
     }
- 
+
+    public int insertar(Alta alta) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_INSERT);
+            stmt.setInt(1, alta.getIdProducto());
+            stmt.setInt(2, alta.getIdProveedor());
+            stmt.setString(3, alta.getFecha());
+            stmt.setInt(4, alta.getCantidad());
+
+            rows = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AltaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
+        }
+        return rows;
+    }
+
+    public int actualizar(Alta alta) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_UPDATE);
+            stmt.setInt(1, alta.getIdProducto());
+            stmt.setInt(2, alta.getIdProveedor());
+            stmt.setString(3, alta.getFecha());
+            stmt.setInt(4, alta.getCantidad());
+            stmt.setInt(5, alta.getIdAlta());
+
+            rows = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AltaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
+        }
+        return rows;
+    }
+
+    public int eliminar(Alta alta) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_DELETE);
+            stmt.setInt(1, alta.getIdAlta());
+
+            rows = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AltaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
+        }
+        return rows;
+    }
+
 }

@@ -1,2 +1,14 @@
-org\acr\abarroteseltrio\JakartaRestConfiguration.class
-org\acr\abarroteseltrio\resources\JakartaEE8Resource.class
+datos\VentaDAO.class
+datos\ProveedorDAO.class
+dominio\Producto.class
+datos\AltaDAO.class
+dominio\Proveedor.class
+web\ServletAltas.class
+datos\DetalleVentaDAO.class
+dominio\Vendedor.class
+datos\VendedorDAO.class
+dominio\DetalleVenta.class
+datos\ConexionBD.class
+dominio\Venta.class
+datos\ProductoDAO.class
+dominio\Alta.class

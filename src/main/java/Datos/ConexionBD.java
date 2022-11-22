@@ -1,5 +1,5 @@
 
-package Datos;
+package datos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,61 +7,59 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
+import javax.sql.DataSource;
+import java.sql.*;
+import javax.sql.DataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 public class ConexionBD {
     
-    public Connection conexion;
-    public Statement sentencia;
-    public ResultSet resultado;
-    private static final String url_bd="jdbc:mysql://localhost:3306/sistema?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-    private static final String user_bd="root";
-    private static final String pass_bd="Andres7Cordero";
+    private static final String JDBC_URL="jdbc:mysql://localhost:3306/abarrotes?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private static final String JDBC_USER="root";
+    private static final String JDBC_PASSWORD="Andres7Cordero";
     
-  public void ConectarBD(){
-  try {
-     final String Controlador="com.mysql.jdbc.Driver";
-     Class.forName(Controlador);
-     conexion=DriverManager.getConnection(url_bd,user_bd,pass_bd);
-     sentencia=conexion.createStatement();
-    }
-    catch(ClassNotFoundException | SQLException ex){
-     System.out.print(ex);
-    }
-  }
-  
-  public  void DesconectarBD(){
-  try{
-      if(conexion!=null){
-        if(sentencia!=null){
-          sentencia.close();
+  private static BasicDataSource dataSource;
+
+    public static DataSource getDataSource() {
+        if (dataSource == null) {
+            dataSource = new BasicDataSource();
+            dataSource.setUrl(JDBC_URL);
+            dataSource.setUsername(JDBC_USER);
+            dataSource.setPassword(JDBC_PASSWORD);
+            dataSource.setInitialSize(50);
         }
-        conexion.close();
-      }
-    }catch(SQLException ex){
-      JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-      System.exit(1);
+        return dataSource;
     }
-  }
-  public static Connection getConnection() throws SQLException{
-   return DriverManager.getConnection(url_bd,user_bd,pass_bd);
-  }
-      public static void close(ResultSet rs)throws SQLException{
-    rs.close();
+
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+
     }
-    //Ejecuta la sentencia
-    public static void close(Statement smtm)throws SQLException{
-        smtm.close();
+
+    public static void close(ResultSet rs) {
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
     }
-    //Guarda la instruccion 
-    public static void close(PreparedStatement smtm)throws SQLException{
-        smtm.close();
+
+    public static void close(PreparedStatement stmt) {
+        try {
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
     }
-    //Cerrar la conexion 
-    public static void close(Connection conn)throws SQLException{
-        conn.close();
+
+    public static void close(Connection conn) {
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
     }
-  
 }
 
 
