@@ -4,10 +4,12 @@ dominio\Producto.class
 datos\AltaDAO.class
 dominio\Proveedor.class
 web\ServletAltas.class
+web\ServletInventario.class
 datos\DetalleVentaDAO.class
 dominio\Vendedor.class
 datos\VendedorDAO.class
 dominio\DetalleVenta.class
+web\ServletInicio.class
 datos\ConexionBD.class
 dominio\Venta.class
 datos\ProductoDAO.class
