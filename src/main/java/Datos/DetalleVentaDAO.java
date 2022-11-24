@@ -8,17 +8,17 @@ import java.util.logging.Logger;
 
 public class DetalleVentaDAO {
 
-    private static final String SQL_SELECT = "SELECT IDDetalleVenta, IDVenta, IDProducto, Fecha, Cantidad, Total "
+    private static final String SQL_SELECT = "SELECT IDDetalleVenta, IDVenta, IDProducto, Cantidad, Total "
             + " FROM detalle_venta";
 
-    private static final String SQL_SELECT_BY_ID = "SELECT IDDetalleVenta, IDVenta, IDProducto, Fecha, Cantidad, Total "
+    private static final String SQL_SELECT_BY_ID = "SELECT IDDetalleVenta, IDVenta, IDProducto, Cantidad, Total "
             + " FROM detalle_venta WHERE IDDetalleVenta = ?";
 
-    private static final String SQL_INSERT = "INSERT INTO detalle_venta(IDVenta, IDProducto, Fecha, Cantidad, Total) "
-            + " VALUES(?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO detalle_venta(IDVenta, IDProducto, Cantidad, Total) "
+            + " VALUES(?, ?, ?, ?)";
 
     private static final String SQL_UPDATE = "UPDATE detalle_venta "
-            + " SET IDVenta=?, IDProducto=?, Fecha=?, Cantidad=?, Fecha=? WHERE IDDetalleVenta=?";
+            + " SET IDVenta=?, IDProducto=?, Cantidad=?, Total=? WHERE IDDetalleVenta=?";
 
     private static final String SQL_DELETE = "DELETE FROM detalle_venta WHERE IDDetalleVenta = ?";
 
@@ -36,11 +36,10 @@ public class DetalleVentaDAO {
                 int IDDetalleVenta = rs.getInt("IDDetalleVenta");
                 int IDVenta = rs.getInt("IDVenta");
                 int IDProducto = rs.getInt("IDProducto");
-                String Fecha = rs.getString("Fecha");
                 int Cantidad = rs.getInt("Cantidad");
                 double Total = rs.getDouble("Total");
 
-                detalleVenta = new DetalleVenta(IDDetalleVenta, IDVenta, IDProducto, Fecha, Cantidad, Total);
+                detalleVenta = new DetalleVenta(IDDetalleVenta, IDVenta, IDProducto, Cantidad, Total);
                 detalleVentas.add(detalleVenta);
             }
         } catch (SQLException ex) {
@@ -68,13 +67,11 @@ public class DetalleVentaDAO {
 
             int IDVenta = rs.getInt("IDVenta");
                 int IDProducto = rs.getInt("IDProducto");
-                String Fecha = rs.getString("Fecha");
                 int Cantidad = rs.getInt("Cantidad");
                 double Total = rs.getDouble("Total");
 
             detalleVenta.setIdVenta(IDVenta);
             detalleVenta.setIdProducto(IDProducto);
-            detalleVenta.setFecha(Fecha);
             detalleVenta.setCantidad(Cantidad);
             detalleVenta.setTotal(Total);
                     
@@ -101,7 +98,6 @@ public class DetalleVentaDAO {
                 
             stmt.setInt(1, detalleVenta.getIdVenta());
             stmt.setInt(2, detalleVenta.getIdProducto());
-            stmt.setString(3, detalleVenta.getFecha());
             stmt.setInt(4, detalleVenta.getCantidad());
             stmt.setDouble(5, detalleVenta.getTotal());
 
@@ -126,7 +122,6 @@ public class DetalleVentaDAO {
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setInt(1, detalleVenta.getIdVenta());
             stmt.setInt(2, detalleVenta.getIdProducto());
-            stmt.setString(3, detalleVenta.getFecha());
             stmt.setInt(4, detalleVenta.getCantidad());
             stmt.setDouble(5, detalleVenta.getTotal());
             stmt.setInt(6, detalleVenta.getIdDetalleVenta());

@@ -4,7 +4,6 @@ public class DetalleVenta {
     private int idDetalleVenta;
     private int idVenta;
     private int idProducto;
-    private String fecha;
     private int cantidad;
     private double total;
 
@@ -15,19 +14,17 @@ public class DetalleVenta {
         this.idDetalleVenta = idDetalleVenta;
     }
 
-    public DetalleVenta(int idVenta, int idProducto, String fecha, int cantidad, double total) {
+    public DetalleVenta(int idVenta, int idProducto, int cantidad, double total) {
         this.idVenta = idVenta;
         this.idProducto = idProducto;
-        this.fecha = fecha;
         this.cantidad = cantidad;
         this.total = total;
     }
 
-    public DetalleVenta(int idDetalleVenta, int idVenta, int idProducto, String fecha, int cantidad, double total) {
+    public DetalleVenta(int idDetalleVenta, int idVenta, int idProducto, int cantidad, double total) {
         this.idDetalleVenta = idDetalleVenta;
         this.idVenta = idVenta;
         this.idProducto = idProducto;
-        this.fecha = fecha;
         this.cantidad = cantidad;
         this.total = total;
     }
@@ -55,15 +52,6 @@ public class DetalleVenta {
     public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
     }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public int getCantidad() {
         return cantidad;
     }
