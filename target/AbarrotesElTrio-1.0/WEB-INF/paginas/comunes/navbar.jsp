@@ -1,14 +1,14 @@
 <!--BARRA DE NAVEGACIÓN-->
   <header class="header">
-    <img src="/img/logoNaranja.png" alt="Logo de la marca" />
+    <img src="assets/img/logoNaranja.png" alt="Logo de la marca" />
     <nav>
       <ul class="nav-links">
-        <li><a href="#">Menú</a></li>
-        <li><a href="#">Inventario</a></li>
-        <li><a href="#">Administración</a></li>
+        <li><a href="${pageContext.request.contextPath}/ServletMenu">Menú</a></li>
+        <li><a href="${pageContext.request.contextPath}/ServletInventario">Inventario</a></li>
+        <li><a href="${pageContext.request.contextPath}/ServletAdministracion">Administración</a></li>
       </ul>
     </nav>
-    <a><span class="material-symbols-outlined">logout
+    <a href="${pageContext.request.contextPath}/ServletInicio"><span class="material-symbols-outlined">logout
       </span></a>
 
   </header>

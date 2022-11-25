@@ -33,12 +33,7 @@ public class ServletInventario extends HttpServlet {
 
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Alta> altas = new AltaDAO().listar();
-        System.out.println("altas = " + altas);
-        HttpSession sesion = request.getSession();
-        sesion.setAttribute("altas", altas);
-        sesion.setAttribute("totalAltas", altas.size());
-        response.sendRedirect("altas.jsp");
+        response.sendRedirect("inventario.jsp");
     }
     
     

@@ -28,7 +28,8 @@ public class ServletInicio extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion != null) {
             switch (accion) {
-                case "insertar":
+                case "login":
+                    response.sendRedirect("menu.jsp");
                     break;
                 case "modificar":
                     break;

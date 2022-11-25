@@ -1,17 +1,17 @@
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\web\ServletAltas.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\dominio\Venta.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\Datos\ProveedorDAO.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\dominio\DetalleVenta.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\dominio\Proveedor.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\Datos\VentaDAO.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\Datos\VendedorDAO.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\dominio\Alta.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\Datos\ProductoDAO.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\Datos\AltaDAO.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\dominio\Vendedor.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\Datos\ConexionBD.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\dominio\Producto.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\Datos\DetalleVentaDAO.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\web\ServletInicio.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\web\ServletMenu.java
-C:\Users\user\Desktop\Uni\Modelos_Abstractos_De_Software\Project\TERCER PARCIAL\AbarrotesElTrio\src\main\java\web\ServletInventario.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\Datos\VendedorDAO.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\dominio\Vendedor.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\dominio\Venta.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\Datos\DetalleVentaDAO.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\Datos\AltaDAO.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\web\ServletInventario.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\Datos\VentaDAO.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\dominio\DetalleVenta.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\web\ServletMenu.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\Datos\ProveedorDAO.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\dominio\Producto.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\web\ServletInicio.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\Datos\ProductoDAO.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\dominio\Alta.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\Datos\ConexionBD.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\web\ServletAltas.java
+D:\Documentos\UDLS\Quinto Semestre\Tercer Parcial\Modelos Abstractos\AbarrotesElTrio\src\main\java\dominio\Proveedor.java

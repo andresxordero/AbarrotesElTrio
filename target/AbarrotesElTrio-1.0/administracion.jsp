@@ -5,18 +5,24 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles/stylesListado.css" />
+  <link rel="stylesheet" type="text/css" href="assets/styles/stylesListado.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="shortcut icon" href="img/icono.png" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/img/icono.ico" type="image/x-icon">
   <title>Panel de Administrador</title>
 </head>
 
 <body>
+     <!--Formulario de Inicio-->
+     <jsp:include page="/WEB-INF/paginas/comunes/navbar.jsp"/>
+ 
   <div class="general">
-    
+      <jsp:include page="/WEB-INF/paginas/vendedores/listadoVendedores.jsp"/>
+      
+      <jsp:include page="/WEB-INF/paginas/proveedores/listadoProveedores.jsp"/>
   </div>
+</body>
 
 </html>
