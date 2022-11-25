@@ -1,0 +1,264 @@
+/*GENERAL*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+}
+
+body {
+    overflow-x: hidden;
+    background-image: url("/img/fondo1.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/*NAVBAR*/
+
+.header {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    background-color: white;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 97%;
+    padding: 1.5rem 3rem;
+    margin: 1rem 1rem 2rem 1rem;
+    border-radius: 1.2rem;
+}
+
+.material-symbols-outlined {
+    color: #ff8f0e;
+}
+
+.material-symbols-outlined:hover {
+    font-size: 2rem;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.header img {
+    margin-right: auto;
+    height: 3rem;
+    width: auto;
+}
+
+.header .nav-links {
+    list-style: none;
+}
+
+.header .nav-links li {
+    display: inline-block;
+    padding-right: 12rem;
+    transition: .3s;
+}
+
+.header .nav-links li:hover {
+    transform: scale(1.1);
+    transition: .3s;
+}
+
+.header .nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.header .nav-links li a:hover {
+    color: #FF8A00;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.general {
+    margin-top: 8rem;
+    margin-bottom: 2rem;
+}
+
+input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size:  .8rem;
+    height: 2.5rem;
+    letter-spacing: 1px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size:  .8rem;
+    height: 2.5rem;
+    letter-spacing: 1px;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    top: 7%;
+    left: 5%;
+    align-self: start;
+    justify-self: start;
+    font-weight: 100;
+}
+
+h3 {
+    position: absolute;
+    left: 5%;
+    bottom: 7%;
+    align-self: end;
+    justify-self: end;
+    font-weight: bold;
+    color: white;
+    font-size: 2rem;
+}
+
+.texbox1 {
+    position: absolute;
+    top: 24%;
+    left: 5%;
+    width: 15rem;
+    align-self: start;
+    justify-self: start;
+}
+
+.texbox2 {
+    position: absolute;
+    top: 24%;
+    width: 15rem;
+    left: 40%;
+    align-self: start;
+    justify-self: start;
+}
+
+#puno {
+    position: absolute;
+    top: 19%;
+    left: 5%;
+    align-self: start;
+    justify-self: start;
+    color: white;
+}
+
+#pdos {
+    position: absolute;
+    color: white;
+    top: 19%;
+    left: 40%;
+    align-self: start;
+    justify-self: start;
+}
+#agregar {
+    position: absolute;
+    background: white;
+    top: 24.5%;
+    left: 80%;
+    border: none;
+    height: 2.2rem;
+    width: 9rem;
+    font-size: 16px;
+    border-radius: 10px;
+    color: #FF8A00;
+    align-self: start;
+    padding: 0px 10px;
+}
+
+#agregar:hover {
+    background: white;
+    color: #FF8A00;
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: .3s;
+}
+
+#terminar {
+    position: absolute;
+    background: #77B6FF;
+    bottom: 6.5%;
+    height: 3.5rem;
+    width: 12rem;
+    left: 75%;
+    border: none;
+    font-size: 2rem;
+    border-radius: 10px;
+    color: #fff;
+    align-self: end;
+    padding: 0px 10px;
+}
+
+#terminar:hover {
+    color: #fff;
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.box {
+    width: 60rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 25px 45px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    margin: 13rem 3rem 8rem 3rem;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgb(235, 230, 230);
+}
+
+table {
+    text-align: center;
+    width: 100%;
+    color: #000;
+    border-radius: 16px;
+    background-color: #fff; 
+    font-size: 16px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+th {
+    color: #77B6FF;
+    padding: 20px 15px;
+    font-weight: 700;
+}
+
+td {
+    padding: 15px;
+    border-bottom: solid 1px rgb(235, 232, 232);
+}
+
