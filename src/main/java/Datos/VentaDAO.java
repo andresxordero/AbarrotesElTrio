@@ -62,16 +62,19 @@ public class VentaDAO {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
             stmt.setInt(1, venta.getIdVenta());
             rs = stmt.executeQuery();
-            rs.absolute(1);
+            //rs.absolute(1);
+
+            while (rs.next()) {
 
                 int IDVendedor = rs.getInt("IDVendedor");
                 String Fecha = rs.getString("Fecha");
                 double CostoTotal = rs.getDouble("CostoTotal");
 
-            venta.setIdVendedor(IDVendedor);
-            venta.setFecha(Fecha);
-            venta.setCostoTotal(CostoTotal);
-                    
+                venta.setIdVendedor(IDVendedor);
+                venta.setFecha(Fecha);
+                venta.setCostoTotal(CostoTotal);
+            }
+
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } catch (ClassNotFoundException ex) {
@@ -91,11 +94,10 @@ public class VentaDAO {
         try {
             conn = ConexionBD.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            
+
             stmt.setInt(1, venta.getIdVendedor());
             stmt.setString(2, venta.getFecha());
             stmt.setDouble(3, venta.getCostoTotal());
-
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

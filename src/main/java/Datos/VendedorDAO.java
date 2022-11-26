@@ -64,7 +64,8 @@ public class VendedorDAO {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
             stmt.setInt(1, vendedor.getIdVendedor());
             rs = stmt.executeQuery();
-            rs.absolute(1);//nos posicionamos en el primer registro devuelto
+            //rs.absolute(1);//nos posicionamos en el primer registro devuelto
+            while (rs.next()) {
 
                 String Nombre = rs.getString("Nombre");
                 String Apellido = rs.getString("Apellido");
@@ -72,12 +73,13 @@ public class VendedorDAO {
                 String Usuario = rs.getString("Usuario");
                 String Password = rs.getString("Password");
 
-            vendedor.setNombre(Nombre);
-            vendedor.setApellido(Apellido);
-            vendedor.setTelefono(Telefono);
-            vendedor.setUsuario(Usuario);
-            vendedor.setPassword(Password);
-                    
+                vendedor.setNombre(Nombre);
+                vendedor.setApellido(Apellido);
+                vendedor.setTelefono(Telefono);
+                vendedor.setUsuario(Usuario);
+                vendedor.setPassword(Password);
+            }
+
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } catch (ClassNotFoundException ex) {
@@ -97,13 +99,12 @@ public class VendedorDAO {
         try {
             conn = ConexionBD.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            
+
             stmt.setString(1, vendedor.getNombre());
             stmt.setString(2, vendedor.getApellido());
             stmt.setString(3, vendedor.getTelefono());
             stmt.setString(4, vendedor.getUsuario());
             stmt.setString(5, vendedor.getPassword());
-
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

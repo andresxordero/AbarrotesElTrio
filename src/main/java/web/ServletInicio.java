@@ -1,8 +1,11 @@
 package web;
 
 import datos.AltaDAO;
+import datos.VendedorDAO;
 import dominio.Alta;
+import dominio.Vendedor;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +17,7 @@ public class ServletInicio extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        accionDefault(request,response);
+        accionDefault(request, response);
     }
 
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
@@ -29,7 +32,7 @@ public class ServletInicio extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "login":
-                    response.sendRedirect("menu.jsp");
+                    this.checarCredenciales(request, response);
                     break;
                 case "modificar":
                     break;
@@ -39,6 +42,25 @@ public class ServletInicio extends HttpServlet {
         } else {
             this.accionDefault(request, response);
         }
+    }
+
+    private void checarCredenciales(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperamos los valores del formulario login
+        List<Vendedor> vendedores = new ArrayList<>();
+        VendedorDAO vendedorDAO = new VendedorDAO();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        vendedores = vendedorDAO.listar();
+        for (Vendedor vendedor : vendedores) {
+            if (vendedor.getUsuario().equals(username) && vendedor.getPassword().equals(password)) {
+                response.sendRedirect("menu.jsp");
+                break;
+            } else {
+                response.sendRedirect("inicio.jsp"); 
+            }
+        }
+
     }
 
 }

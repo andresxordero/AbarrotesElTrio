@@ -1,6 +1,6 @@
 package datos;
 
-import dominio.Proveedor ;
+import dominio.Proveedor;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -62,16 +62,19 @@ public class ProveedorDAO {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
             stmt.setInt(1, proveedor.getIdProveedor());
             rs = stmt.executeQuery();
-            rs.absolute(1);//nos posicionamos en el primer registro devuelto
+            //rs.absolute(1);//nos posicionamos en el primer registro devuelto
+
+            while (rs.next()) {
 
                 String Nombre = rs.getString("Nombre");
                 String Teléfono = rs.getString("Teléfono");
                 String Correo = rs.getString("Correo");
 
-            proveedor.setNombre(Nombre);
-            proveedor.setTelefono(Teléfono);
-            proveedor.setCorreo(Correo);
-                    
+                proveedor.setNombre(Nombre);
+                proveedor.setTelefono(Teléfono);
+                proveedor.setCorreo(Correo);
+            }
+
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } catch (ClassNotFoundException ex) {
@@ -91,7 +94,7 @@ public class ProveedorDAO {
         try {
             conn = ConexionBD.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            
+
             stmt.setString(1, proveedor.getNombre());
             stmt.setString(2, proveedor.getTelefono());
             stmt.setString(3, proveedor.getCorreo());

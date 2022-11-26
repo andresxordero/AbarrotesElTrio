@@ -1,6 +1,6 @@
 package datos;
 
-import dominio.Producto ;
+import dominio.Producto;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -64,7 +64,9 @@ public class ProductoDAO {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
             stmt.setInt(1, producto.getIdProducto());
             rs = stmt.executeQuery();
-            rs.absolute(1);//nos posicionamos en el primer registro devuelto
+            //rs.absolute(1);//nos posicionamos en el primer registro devuelto
+
+            while (rs.next()) {
 
                 String Nombre = rs.getString("Nombre");
                 String Descripcion = rs.getString("Descripcion");
@@ -72,12 +74,13 @@ public class ProductoDAO {
                 double PrecioVenta = rs.getDouble("PrecioVenta");
                 double PrecioCompra = rs.getDouble("PrecioCompra");
 
-            producto.setNombre(Nombre);
-            producto.setDescripcion(Descripcion);
-            producto.setExistencias(Existencias);
-            producto.setPrecioVenta(PrecioVenta);
-            producto.setPrecioCompra(PrecioCompra);
-                    
+                producto.setNombre(Nombre);
+                producto.setDescripcion(Descripcion);
+                producto.setExistencias(Existencias);
+                producto.setPrecioVenta(PrecioVenta);
+                producto.setPrecioCompra(PrecioCompra);
+            }
+
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } catch (ClassNotFoundException ex) {
@@ -97,8 +100,7 @@ public class ProductoDAO {
         try {
             conn = ConexionBD.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            
-                
+
             stmt.setString(1, producto.getNombre());
             stmt.setString(2, producto.getDescripcion());
             stmt.setInt(3, producto.getExistencias());

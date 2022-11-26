@@ -1,6 +1,6 @@
 package datos;
 
-import dominio.Alta ;
+import dominio.Alta;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -63,17 +63,20 @@ public class AltaDAO {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
             stmt.setInt(1, alta.getIdAlta());
             rs = stmt.executeQuery();
-            rs.absolute(1);//nos posicionamos en el primer registro devuelto
+            //rs.absolute(1);//nos posicionamos en el primer registro devuelto
 
-            int IDProducto = rs.getInt("IDProducto");
-            int IDProveedor = rs.getInt("IDProveedor");
-            String Fecha = rs.getString("Fecha");
-            int Cantidad = rs.getInt("Cantidad");
+            while (rs.next()) {
 
-            alta.setIdProducto(IDProducto);
-            alta.setIdProveedor(IDProveedor);
-            alta.setFecha(Fecha);
-            alta.setCantidad(Cantidad);
+                int IDProducto = rs.getInt("IDProducto");
+                int IDProveedor = rs.getInt("IDProveedor");
+                String Fecha = rs.getString("Fecha");
+                int Cantidad = rs.getInt("Cantidad");
+
+                alta.setIdProducto(IDProducto);
+                alta.setIdProveedor(IDProveedor);
+                alta.setFecha(Fecha);
+                alta.setCantidad(Cantidad);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

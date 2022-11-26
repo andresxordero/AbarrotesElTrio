@@ -9,13 +9,13 @@
         <h2>Inicio de sesión</h2>
         <h1><b>Bienvenido</b> de regreso,<br>
           por favor ingresa tus datos</h1>
-        <form action="${pageContext.request.contextPath}/ServletInicio?accion=login"" class="login-form" method="POST">
+        <form action="${pageContext.request.contextPath}/ServletInicio?accion=login" class="login-form" method="POST">
           <div class="texbox">
-            <input type="text" placeholder="Nombre de usuario" required />
+            <input type="text" placeholder="Nombre de usuario" name="username" required />
             <span class="material-symbols-outlined">account_circle</span>
           </div>
           <div class="texbox">
-            <input type="password" placeholder="Contraseña" required />
+            <input type="password" placeholder="Contraseña" name="password" required />
             <span class="material-symbols-outlined">lock</span>
           </div>
           <button type="submit">Iniciar sesión</button>

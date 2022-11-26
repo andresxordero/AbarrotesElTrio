@@ -1,6 +1,6 @@
 package datos;
 
-import dominio.DetalleVenta ;
+import dominio.DetalleVenta;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -63,18 +63,21 @@ public class DetalleVentaDAO {
             stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
             stmt.setInt(1, detalleVenta.getIdDetalleVenta());
             rs = stmt.executeQuery();
-            rs.absolute(1);//nos posicionamos en el primer registro devuelto
+            //rs.absolute(1);//nos posicionamos en el primer registro devuelto
 
-            int IDVenta = rs.getInt("IDVenta");
+            while (rs.next()) {
+
+                int IDVenta = rs.getInt("IDVenta");
                 int IDProducto = rs.getInt("IDProducto");
                 int Cantidad = rs.getInt("Cantidad");
                 double Total = rs.getDouble("Total");
 
-            detalleVenta.setIdVenta(IDVenta);
-            detalleVenta.setIdProducto(IDProducto);
-            detalleVenta.setCantidad(Cantidad);
-            detalleVenta.setTotal(Total);
-                    
+                detalleVenta.setIdVenta(IDVenta);
+                detalleVenta.setIdProducto(IDProducto);
+                detalleVenta.setCantidad(Cantidad);
+                detalleVenta.setTotal(Total);
+            }
+
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } catch (ClassNotFoundException ex) {
@@ -94,8 +97,7 @@ public class DetalleVentaDAO {
         try {
             conn = ConexionBD.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            
-                
+
             stmt.setInt(1, detalleVenta.getIdVenta());
             stmt.setInt(2, detalleVenta.getIdProducto());
             stmt.setInt(4, detalleVenta.getCantidad());
