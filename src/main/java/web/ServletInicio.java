@@ -1,8 +1,6 @@
 package web;
 
-import datos.AltaDAO;
 import datos.VendedorDAO;
-import dominio.Alta;
 import dominio.Vendedor;
 import java.io.IOException;
 import java.util.ArrayList;
