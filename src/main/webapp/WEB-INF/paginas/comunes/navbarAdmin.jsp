@@ -8,7 +8,7 @@
         <li><a href="${pageContext.request.contextPath}/ServletAdministracion">Administración</a></li>
       </ul>
     </nav>
-    <a href="${pageContext.request.contextPath}/ServletInicio"><span class="material-symbols-outlined">logout
+    <a href="${pageContext.request.contextPath}/ServletInicio"><span class="material-symbols-outlined salir">logout
       </span></a>
 
   </header>

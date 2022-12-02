@@ -22,7 +22,7 @@
         
         <!--Navbar-->
         
-        <jsp:include page="/WEB-INF/paginas/comunes/navbar.jsp"/>
+        <jsp:include page="/WEB-INF/paginas/comunes/navbarAdmin.jsp"/>
         <jsp:include page="WEB-INF/paginas/ventas/formVentas.jsp"/>
         
     </body>

@@ -17,10 +17,22 @@ public class ServletInventario extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion != null) {
             switch (accion) {
-                case "editar":
+                case "registrarVenta":
                     this.editarAlta(request, response);
                     break;
-                case "eliminar":
+                case "registrarProducto":
+                    this.editarAlta(request, response);
+                    break;
+                case "editarProducto":
+                    this.eliminarAlta(request, response);
+                    break;
+                case "eliminarProducto":
+                    this.eliminarAlta(request, response);
+                    break;
+                case "registrarAlta":
+                    this.editarAlta(request, response);
+                    break;
+                case "editarAlta":
                     this.eliminarAlta(request, response);
                     break;
                 default:
@@ -53,11 +65,23 @@ public class ServletInventario extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion != null) {
             switch (accion) {
-                case "insertar":
-                    this.insertarAlta(request, response);
+                case "registrarVenta":
+                    this.registrarVenta(request, response);
                     break;
-                case "modificar":
-                    this.modificarAlta(request, response);
+                case "registrarProducto":
+                    this.registrarProducto(request, response);
+                    break;
+                case "editarProducto":
+                    this.editarProducto(request, response);
+                    break;
+                case "eliminarProducto":
+                    this.eliminarProducto(request, response);
+                    break;
+                case "registrarAlta":
+                    this.registrarAlta(request, response);
+                    break;
+                case "editarAlta":
+                    this.editarAlta(request, response);
                     break;
                 default:
                     this.accionDefault(request, response);

@@ -16,4 +16,3 @@ dominio\Venta.class
 web\ServletMenu.class
 datos\ProductoDAO.class
 dominio\Alta.class
-.netbeans_automatic_build

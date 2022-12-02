@@ -1,3 +1,6 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!--FORMULARIO-->
   <div class="general">
     <div class="box">
@@ -5,17 +8,19 @@
       <h3>TOTAL: $55</h3>
       
       <form>
-        <button id="agregar" type="submit">Agregar</button>
-      <button id="terminar" type="submit">Terminar</button>
-      <p id="puno">Código de barras</p>
-      <p id="pdos">Cantidad</p>
+          <a href="${pageContext.request.contextPath}/ServletMenu?accion=agregarProducto&idProducto=${producto.idProducto}"><button id="agregar" type="submit">Agregar</button></a>
+          <a href="${pageContext.request.contextPath}/ServletMenu?accion=registrarVenta&idVenta=${venta.idVenta}"><button id="terminar" type="submit">Terminar</button></a>
+      <p id="puno" for="idProducto">Código de barras</p>
+      <p id="pdos" for="cantidad">Cantidad</p>
       <div class="texbox1">
-        <select name="" id="">
-          <option>Ejemplo</option>
+        <select name="idProducto" id="">
+            <c:forEach var="producto" items="${productos}" varStatus="status" >
+                <option>${producto.id}</option>
+            </c:forEach>
         </select>
       </div>
       <div class="texbox2">
-        <input id="dos" type="text" placeholder="" required/>
+          <input id="dos" type="text" placeholder="" name="cantidad" required/>
       </div>
       </form>
       
@@ -30,27 +35,13 @@
             </tr>
           </thead>
           <tbody>
+              <c:forEach var="producto" items="${productos}" varStatus="status" >
+            </c:forEach>
               <tr>
                 <td>Agua Bonafont</td>
                 <td>1</td>
                 <td>$13</td>
-                <td><a href=""><span class="material-symbols-outlined">
-                  delete
-                </span></a></td>
-              </tr>
-              <tr>
-                <td>Agua Bonafont</td>
-                <td>1</td>
-                <td>$13</td>
-                <td><a href=""><span class="material-symbols-outlined">
-                  delete
-                </span></a></td>
-              </tr>
-              <tr>
-                <td>Agua Bonafont</td>
-                <td>1</td>
-                <td>$13</td>
-                <td><a href=""><span class="material-symbols-outlined">
+                <td><a href="${pageContext.request.contextPath}/ServletMenu?accion=eliminar&idVenta=${venta.idVenta}"><span class="material-symbols-outlined">
                   delete
                 </span></a></td>
               </tr>

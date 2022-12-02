@@ -36,10 +36,23 @@ body {
     color: #ff8f0e;
 }
 
-.material-symbols-outlined:hover {
+.salir:hover { /*CAMBIO*/
+    color: #FF8A00 !important;
+}
+
+.eliminar { /*CAMBIO*/
+    color: #77B6FF !important;
+}
+
+.eliminar:hover { /*CAMBIO*/
+    color: white !important;
+}
+
+.material-symbols-outlined:hover { /*CAMBIO*/
     font-size: 2rem;
     transition: .3s;
     cursor: pointer;
+    color: white;
 }
 
 .header img {
@@ -52,13 +65,14 @@ body {
     list-style: none;
 }
 
-.header .nav-links li {
+.header .nav-links li { /*CAMBIO*/
     display: inline-block;
-    padding-right: 12rem;
+    margin-right: 10rem;
+    margin-left: 2rem;
     transition: .3s;
 }
 
-.header .nav-links li:hover {
+.header .nav-links li:hover { /*CAMBIO*/    
     transform: scale(1.1);
     transition: .3s;
 }
@@ -83,18 +97,14 @@ body {
     display: flexbox;
 }
 
-h2 {
-    position: absolute;
+h2 { /*CAMBIO*/
+    margin-top: 1.5rem;
     color: white;
-    font-size: 24px;
-    top: 11%;
-    left: 8%;
+    font-size: 2rem;
     font-weight: 100;
-    align-self: start;
-    justify-self: start;
 }
 
-button { 
+button {  /*CAMBIO*/
     height: 2.2rem;
     font-size: .8rem;
     border-radius: 3rem;
@@ -106,8 +116,15 @@ button {
     font-weight: 200;
     position: absolute;
     transition: .3s;
-    left: 80%;
-    top: 12%;
+    margin-top: .5rem;
+}
+
+.button1 { /*CAMBIO*/
+    left: 25.7rem;
+}
+
+.button2 { /*CAMBIO*/
+    left: 15rem;
 }
 
 button:hover {
@@ -133,7 +150,7 @@ button:hover {
 }
 
 .container {
-    margin: 6.8rem 2.5rem 2.5rem 2.5rem;
+    margin: 5rem 2.5rem 2.5rem 2.5rem;
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgb(235, 230, 230);

@@ -21,6 +21,7 @@
         <div class="inputBox">
           <input type="text" placeholder="Cantidad" required>
         </div>
+        <a href="${pageContext.request.contextPath}/ServletMenu?accion=agregarProducto&idProducto=${producto.idProducto}"></a>
         <button type="submit">Registrar</button>
       </form>
     </div>
