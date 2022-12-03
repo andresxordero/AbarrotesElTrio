@@ -36,10 +36,23 @@ body {
     color: #ff8f0e;
 }
 
-.material-symbols-outlined:hover {
+.salir:hover { /*CAMBIO*/
+    color: #FF8A00 !important;
+}
+
+.eliminar { /*CAMBIO*/
+    color: #77B6FF !important;
+}
+
+.eliminar:hover { /*CAMBIO*/
+    color: white !important;
+}
+
+.material-symbols-outlined:hover { /*CAMBIO*/
     font-size: 2rem;
     transition: .3s;
     cursor: pointer;
+    color: white;
 }
 
 .header img {
@@ -52,13 +65,14 @@ body {
     list-style: none;
 }
 
-.header .nav-links li {
+.header .nav-links li { /*CAMBIO*/
     display: inline-block;
-    padding-right: 12rem;
+    margin-right: 10rem;
+    margin-left: 2rem;
     transition: .3s;
 }
 
-.header .nav-links li:hover {
+.header .nav-links li:hover { /*CAMBIO*/    
     transform: scale(1.1);
     transition: .3s;
 }
@@ -75,9 +89,40 @@ body {
     cursor: pointer;
 }
 
+
 .general {
     margin-top: 8rem;
     margin-bottom: 2rem;
+}
+
+h2 { /*CAMBIO*/
+    margin-top: 1.5rem;
+    color: white;
+    font-size: 2rem;
+    font-weight: 100;
+}
+
+button {  /*CAMBIO*/
+    height: 2.2rem;
+    font-size: .8rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    width: 9rem;
+    background: white;
+    color: #FF8A00;
+    border: 0;
+    font-weight: 200;
+    position: absolute;
+    transition: .3s;
+    margin-top: .5rem;
+}
+
+.button1 { /*CAMBIO*/
+    left: 25.7rem;
+}
+
+.button2 { /*CAMBIO*/
+    left: 15rem;
 }
 
 input {

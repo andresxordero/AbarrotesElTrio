@@ -16,7 +16,7 @@
 
 <body>
      <!--Formulario de Inicio-->
-     <jsp:include page="/WEB-INF/paginas/comunes/navbar.jsp"/>
+     <jsp:include page="/WEB-INF/paginas/comunes/navbarAdmin.jsp"/>
  
   <div class="general">
       <jsp:include page="/WEB-INF/paginas/vendedores/listadoVendedores.jsp"/>

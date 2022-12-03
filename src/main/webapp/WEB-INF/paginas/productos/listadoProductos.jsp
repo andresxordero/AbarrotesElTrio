@@ -25,6 +25,9 @@
                 <td>92</td>
                 <td>$12</td>
                 <td>$8.50</td>
+                <td><a href=""><span class="material-symbols-outlined eliminar">
+                  delete
+                </span></a></td>
               </tr>
             </a>
             <a href="card.html">
@@ -35,6 +38,9 @@
                 <td>92</td>
                 <td>$12</td>
                 <td>$8.50</td>
+                <td><a href=""><span class="material-symbols-outlined eliminar">
+                  delete
+                </span></a></td>
               </tr>
             </a>
             <a href="">
@@ -45,6 +51,9 @@
                 <td>92</td>
                 <td>$12</td>
                 <td>$8.50</td>
+                <td><a href=""><span class="material-symbols-outlined eliminar">
+                  delete
+                </span></a></td>
               </tr>
             </a>
           </tbody>
