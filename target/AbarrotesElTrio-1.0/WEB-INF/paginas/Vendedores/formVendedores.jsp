@@ -15,5 +15,4 @@
         <button type="submit">Registrar</button>
       </form>
     </div>
-    </div>
   </section>

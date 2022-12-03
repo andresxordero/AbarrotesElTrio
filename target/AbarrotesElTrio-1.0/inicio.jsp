@@ -17,6 +17,7 @@
  <!--Formulario de Inicio-->
  <jsp:include page="/WEB-INF/paginas/comunes/formInicio.jsp"/>
  
+ 
  <!--Formulario de Inicio-->
  <jsp:include page="/WEB-INF/paginas/comunes/fondo.jsp"/>
 

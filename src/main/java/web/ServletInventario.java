@@ -18,22 +18,19 @@ public class ServletInventario extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "registrarVenta":
-                    this.editarAlta(request, response);
+                    //this.registrarVenta(request, response);
                     break;
                 case "registrarProducto":
-                    this.editarAlta(request, response);
+                    //this.registrarProducto(request, response);
                     break;
                 case "editarProducto":
-                    this.eliminarAlta(request, response);
+                    //this.editarProducto(request, response);
                     break;
                 case "eliminarProducto":
-                    this.eliminarAlta(request, response);
+                    //this.eliminarProducto(request, response);
                     break;
                 case "registrarAlta":
-                    this.editarAlta(request, response);
-                    break;
-                case "editarAlta":
-                    this.eliminarAlta(request, response);
+                    //this.registrarAlta(request, response);
                     break;
                 default:
                     this.accionDefault(request, response);
@@ -66,22 +63,19 @@ public class ServletInventario extends HttpServlet {
         if (accion != null) {
             switch (accion) {
                 case "registrarVenta":
-                    this.registrarVenta(request, response);
+                    //this.registrarVenta(request, response);
                     break;
                 case "registrarProducto":
-                    this.registrarProducto(request, response);
+                    //this.registrarProducto(request, response);
                     break;
                 case "editarProducto":
-                    this.editarProducto(request, response);
+                    //this.editarProducto(request, response);
                     break;
                 case "eliminarProducto":
-                    this.eliminarProducto(request, response);
+                    //this.eliminarProducto(request, response);
                     break;
                 case "registrarAlta":
-                    this.registrarAlta(request, response);
-                    break;
-                case "editarAlta":
-                    this.editarAlta(request, response);
+                    //this.registrarAlta(request, response);
                     break;
                 default:
                     this.accionDefault(request, response);
@@ -90,6 +84,8 @@ public class ServletInventario extends HttpServlet {
             this.accionDefault(request, response);
         }
     }
+    
+    
 
     private void insertarAlta(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

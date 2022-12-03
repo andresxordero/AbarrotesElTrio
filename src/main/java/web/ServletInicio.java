@@ -45,6 +45,7 @@ public class ServletInicio extends HttpServlet {
     private void checarCredenciales(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //recuperamos los valores del formulario login
+        boolean existe = false;
         List<Vendedor> vendedores = new ArrayList<>();
         VendedorDAO vendedorDAO = new VendedorDAO();
         String username = request.getParameter("username");
@@ -52,11 +53,15 @@ public class ServletInicio extends HttpServlet {
         vendedores = vendedorDAO.listar();
         for (Vendedor vendedor : vendedores) {
             if (vendedor.getUsuario().equals(username) && vendedor.getPassword().equals(password)) {
-                response.sendRedirect("menu.jsp");
+                existe = true;
                 break;
-            } else {
-                response.sendRedirect("inicio.jsp"); 
             }
+        }
+        if (existe) {
+            response.sendRedirect("menu.jsp");
+
+        } else {
+            response.sendRedirect("inicio.jsp");
         }
 
     }
