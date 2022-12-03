@@ -1,6 +1,7 @@
 package web;
 
 import datos.DetalleVentaDAO;
+import datos.ProductoDAO;
 import datos.VentaDAO;
 import dominio.DetalleVenta;
 import dominio.Producto;
@@ -40,6 +41,9 @@ public class ServletMenu extends HttpServlet {
 
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        List<Producto> productos = new ProductoDAO().listar();
+        HttpSession sesion = request.getSession();
+        sesion.setAttribute("productos", productos);
         response.sendRedirect("menu.jsp");
     }
 
@@ -86,7 +90,7 @@ public class ServletMenu extends HttpServlet {
     private void agregarProductoDeVenta(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //recuperamos los valores del formulario de Venta
-        String idProducto = request.getParameter("idProducto");
+        String idProducto = request.getParameter("nombre");
         String cantidad = request.getParameter("cantidad");
            
         //Creamos el objeto de cliente (modelo)

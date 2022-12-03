@@ -20,6 +20,8 @@ public class ServletInicio extends HttpServlet {
 
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        
         response.sendRedirect("inicio.jsp");
     }
 
@@ -50,6 +52,10 @@ public class ServletInicio extends HttpServlet {
         VendedorDAO vendedorDAO = new VendedorDAO();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        Vendedor usuario = new Vendedor();
+        
+        HttpSession sesion = request.getSession();
+        
         vendedores = vendedorDAO.listar();
         for (Vendedor vendedor : vendedores) {
             if (vendedor.getUsuario().equals(username) && vendedor.getPassword().equals(password)) {
@@ -58,6 +64,9 @@ public class ServletInicio extends HttpServlet {
             }
         }
         if (existe) {
+            usuario.setUsuario(username);
+            usuario.setPassword(password);
+            sesion.setAttribute("usuario", usuario);
             response.sendRedirect("menu.jsp");
 
         } else {
