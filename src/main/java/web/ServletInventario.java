@@ -1,7 +1,11 @@
 package web;
 
 import datos.AltaDAO;
+import datos.ProductoDAO;
+import datos.VentaDAO;
 import dominio.Alta;
+import dominio.Producto;
+import dominio.Venta;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -24,7 +28,7 @@ public class ServletInventario extends HttpServlet {
                     //this.registrarProducto(request, response);
                     break;
                 case "editarProducto":
-                    //this.editarProducto(request, response);
+                    this.editarProducto(request, response);
                     break;
                 case "eliminarProducto":
                     //this.eliminarProducto(request, response);
@@ -42,6 +46,14 @@ public class ServletInventario extends HttpServlet {
 
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        List<Producto> productos = new ProductoDAO().listar();
+        List<Alta> altas = new AltaDAO().listar();
+        List<Venta> ventas = new VentaDAO().listar();
+        
+        sesion.setAttribute("ventas", ventas);
+        sesion.setAttribute("productos", productos);
+        sesion.setAttribute("altas", altas);
         response.sendRedirect("inventario.jsp");
     }
     
@@ -69,7 +81,7 @@ public class ServletInventario extends HttpServlet {
                     //this.registrarProducto(request, response);
                     break;
                 case "editarProducto":
-                    //this.editarProducto(request, response);
+                    this.editarProducto(request, response);
                     break;
                 case "eliminarProducto":
                     //this.eliminarProducto(request, response);
@@ -104,6 +116,16 @@ public class ServletInventario extends HttpServlet {
 
         //Redirigimos hacia accion por default
         this.accionDefault(request, response);
+    }
+    
+    private void editarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperamos el idProducto
+        int idProducto = Integer.parseInt(request.getParameter("idProducto"));
+        Producto producto = new ProductoDAO().encontrar(new Producto(idProducto));
+        request.setAttribute("produdcto", producto);
+        String jspEditar = "/WEB-INF/paginas/productos/formProductos.jsp";
+        request.getRequestDispatcher(jspEditar).forward(request, response);
     }
 
     private void modificarAlta(HttpServletRequest request, HttpServletResponse response)

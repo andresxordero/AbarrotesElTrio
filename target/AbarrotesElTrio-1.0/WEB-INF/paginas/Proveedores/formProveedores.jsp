@@ -7,7 +7,7 @@
           <input type="text" placeholder="Nombre" required>
         </div>
         <div class="inputBox">
-          <input type="number" placeholder="Teléfono" required>
+          <input type="number" placeholder="Telefono" required>
         </div>
         <div class="inputBox">
           <input type="email" placeholder="Correo" required>

@@ -1,7 +1,11 @@
 package web;
 
 import datos.AltaDAO;
+import datos.ProveedorDAO;
+import datos.VendedorDAO;
 import dominio.Alta;
+import dominio.Proveedor;
+import dominio.Vendedor;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -33,6 +37,13 @@ public class ServletAdministracion extends HttpServlet {
 
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        List<Vendedor> vendedores = new VendedorDAO().listar();
+        List<Proveedor> proveedores = new ProveedorDAO().listar();
+        System.out.println(vendedores);
+        
+        sesion.setAttribute("vendedores", vendedores);
+        sesion.setAttribute("proveedores", proveedores);
         response.sendRedirect("administracion.jsp");
     }
     

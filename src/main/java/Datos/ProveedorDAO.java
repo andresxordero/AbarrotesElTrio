@@ -8,17 +8,17 @@ import java.util.logging.Logger;
 
 public class ProveedorDAO {
 
-    private static final String SQL_SELECT = "SELECT IDProveedor, Nombre, Teléfono, Correo "
+    private static final String SQL_SELECT = "SELECT IDProveedor, Nombre, Telefono, Correo "
             + " FROM proveedor";
 
-    private static final String SQL_SELECT_BY_ID = "SELECT IDProveedor, Nombre, Teléfono, Correo "
+    private static final String SQL_SELECT_BY_ID = "SELECT IDProveedor, Nombre, Telefono, Correo "
             + " FROM proveedor WHERE IDProveedor = ?";
 
-    private static final String SQL_INSERT = "INSERT INTO proveedor(Nombre, Teléfono, Correo) "
+    private static final String SQL_INSERT = "INSERT INTO proveedor(Nombre, Telefono, Correo) "
             + " VALUES(?, ?, ?)";
 
     private static final String SQL_UPDATE = "UPDATE proveedor "
-            + " SET Nombre=?, Teléfono=?, Correo=? WHERE IDProveedor=?";
+            + " SET Nombre=?, Telefono=?, Correo=? WHERE IDProveedor=?";
 
     private static final String SQL_DELETE = "DELETE FROM proveedor WHERE IDProveedor = ?";
 
@@ -35,10 +35,10 @@ public class ProveedorDAO {
             while (rs.next()) {
                 int IDProveedor = rs.getInt("IDProveedor");
                 String Nombre = rs.getString("Nombre");
-                String Teléfono = rs.getString("Teléfono");
+                String Telefono = rs.getString("Telefono");
                 String Correo = rs.getString("Correo");
 
-                proveedor = new Proveedor(IDProveedor, Nombre, Teléfono, Correo);
+                proveedor = new Proveedor(IDProveedor, Nombre, Telefono, Correo);
                 proveedores.add(proveedor);
             }
         } catch (SQLException ex) {
@@ -67,11 +67,11 @@ public class ProveedorDAO {
             while (rs.next()) {
 
                 String Nombre = rs.getString("Nombre");
-                String Teléfono = rs.getString("Teléfono");
+                String Telefono = rs.getString("Telefono");
                 String Correo = rs.getString("Correo");
 
                 proveedor.setNombre(Nombre);
-                proveedor.setTelefono(Teléfono);
+                proveedor.setTelefono(Telefono);
                 proveedor.setCorreo(Correo);
             }
 

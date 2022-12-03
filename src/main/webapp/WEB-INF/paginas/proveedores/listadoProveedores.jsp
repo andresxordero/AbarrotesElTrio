@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="box">
       <div class="superior">
         <h2>Registros de proveedores</h2>
@@ -15,30 +17,19 @@
             </tr>
           </thead>
           <tbody>
-            <a href="card.html">
-              <tr>
-                <td>816512</td>
-                <td>Agua Bonafont</td>
-                <td>Botella de agua</td>
-                <td>92</td>
-              </tr>
-            </a>
-            <a href="card.html">
-              <tr>
-                <td>816512</td>
-                <td>Agua Bonafont</td>
-                <td>Botella de agua</td>
-                <td>92</td>
-              </tr>
-            </a>
-            <a href="">
-              <tr>
-                <td>816512</td>
-                <td>Agua Bonafont</td>
-                <td>Botella de agua</td>
-                <td>92</td>
-              </tr>
-            </a>
+            <section id = "proveedores">  
+                <c:forEach var="proveedor" items="${proveedores}" varStatus="status" >
+                    <tr>
+                        <td>${proveedor.idProveedor}</td>
+                        <td>${proveedor.nombre} </td>                            
+                        <td>${proveedor.telefono}</td>
+                        <td>${proveedor.correo}</td>
+                        <td><a href="${pageContext.request.contextPath}/ServletInventario?accion=editarProducto&idCliente=${proveedor.idProveedor}"><span class="material-symbols-outlined eliminar">
+                                    delete
+                                </span></a></td>
+                    </tr>
+                </c:forEach>
+            </section>
           </tbody>
         </table>
       </div>

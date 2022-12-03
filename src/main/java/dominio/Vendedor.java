@@ -7,6 +7,7 @@ public class Vendedor {
     private String telefono;
     private String usuario;
     private String password;
+    private String rol;
 
     public Vendedor() {
     }
@@ -23,13 +24,14 @@ public class Vendedor {
         this.password = password;
     }
 
-    public Vendedor(int idVendedor, String nombre, String apellido, String telefono, String usuario, String password) {
+    public Vendedor(int idVendedor, String nombre, String apellido, String telefono, String usuario, String password, String rol) {
         this.idVendedor = idVendedor;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.usuario = usuario;
         this.password = password;
+        this.rol = rol;
     }
 
     public int getIdVendedor() {
@@ -79,4 +81,13 @@ public class Vendedor {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+    
 }

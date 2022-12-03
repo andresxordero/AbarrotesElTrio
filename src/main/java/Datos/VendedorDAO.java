@@ -8,17 +8,17 @@ import java.util.logging.Logger;
 
 public class VendedorDAO {
 
-    private static final String SQL_SELECT = "SELECT IDVendedor, Nombre, Apellido, Telefono, Usuario, Password "
+    private static final String SQL_SELECT = "SELECT IDVendedor, Nombre, Apellido, Telefono, Usuario, Password, Rol "
             + " FROM vendedor";
 
-    private static final String SQL_SELECT_BY_ID = "SELECT IDVendedor, Nombre, Apellido, Telefono, Usuario, Password "
+    private static final String SQL_SELECT_BY_ID = "SELECT IDVendedor, Nombre, Apellido, Telefono, Usuario, Password, Rol "
             + " FROM vendedor WHERE IDVendedor = ?";
 
-    private static final String SQL_INSERT = "INSERT INTO vendedor(Nombre, Apellido, Telefono, Usuario, Password) "
-            + " VALUES(?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO vendedor(Nombre, Apellido, Telefono, Usuario, Password, Rol) "
+            + " VALUES(?, ?, ?, ?, ?, ?)";
 
     private static final String SQL_UPDATE = "UPDATE vendedor "
-            + " SET Nombre=?, Apellido=?, Telefono=?, Usuario=?, Password=? WHERE IDVendedor=?";
+            + " SET Nombre=?, Apellido=?, Telefono=?, Usuario=?, Password=?, Rol=? WHERE IDVendedor=?";
 
     private static final String SQL_DELETE = "DELETE FROM vendedor WHERE IDVendedor = ?";
 
@@ -39,8 +39,9 @@ public class VendedorDAO {
                 String Telefono = rs.getString("Telefono");
                 String Usuario = rs.getString("Usuario");
                 String Password = rs.getString("Password");
+                String Rol = rs.getString("Rol");
 
-                vendedor = new Vendedor(IDVendedor, Nombre, Apellido, Telefono, Usuario, Password);
+                vendedor = new Vendedor(IDVendedor, Nombre, Apellido, Telefono, Usuario, Password, Rol);
                 vendedores.add(vendedor);
             }
         } catch (SQLException ex) {
@@ -72,12 +73,14 @@ public class VendedorDAO {
                 String Telefono = rs.getString("Telefono");
                 String Usuario = rs.getString("Usuario");
                 String Password = rs.getString("Password");
+                String Rol = rs.getString("Rol");
 
                 vendedor.setNombre(Nombre);
                 vendedor.setApellido(Apellido);
                 vendedor.setTelefono(Telefono);
                 vendedor.setUsuario(Usuario);
                 vendedor.setPassword(Password);
+                vendedor.setRol(Rol);
             }
 
         } catch (SQLException ex) {
@@ -105,6 +108,7 @@ public class VendedorDAO {
             stmt.setString(3, vendedor.getTelefono());
             stmt.setString(4, vendedor.getUsuario());
             stmt.setString(5, vendedor.getPassword());
+            stmt.setString(6, vendedor.getRol());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -130,7 +134,8 @@ public class VendedorDAO {
             stmt.setString(3, vendedor.getTelefono());
             stmt.setString(4, vendedor.getUsuario());
             stmt.setString(5, vendedor.getPassword());
-            stmt.setInt(6, vendedor.getIdVendedor());
+            stmt.setString(6, vendedor.getRol());
+            stmt.setInt(7, vendedor.getIdVendedor());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
