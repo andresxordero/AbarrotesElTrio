@@ -2,7 +2,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!--FORMULARIO-->
-    
+
 <div class="general">
     <div class="box">
         <h2>Venta</h2>
@@ -15,16 +15,16 @@
             <p id="puno" >Nombre del Producto</p>
             <p id="pdos" >Cantidad</p>
             <section id = "productos">  
-            <div class="texbox1">
-                <select>
-                    <c:forEach var="producto" items="${productos}" varStatus="status" >
-                        <option name="nombre">${producto.nombre}</option>
-                    </c:forEach>
-                </select>
-            </div>
-            <div class="texbox2">
-                <input id="dos" type="text" placeholder="" name="cantidad" required/>
-            </div>
+                <div class="texbox1">
+                    <select>
+                        <c:forEach var="producto" items="${productos}" varStatus="status" >
+                            <option name="nombre">${producto.nombre}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="texbox2">
+                    <input id="dos"  type="text" placeholder="" name="cantidad" required/>
+                </div>
             </section>
         </form>
 
@@ -39,22 +39,22 @@
                     </tr>
                 </thead>
                 <tbody>
-<section id = "productos">  
+                <section id = "productos">  
                     <c:forEach var="producto" items="${productos}" varStatus="status" >
                         <tr>
-                                    <td></td>
-                                    <td>${producto.nombre} ${producto.existencias}</td>S
-                                </tr>
+                            <td></td>
+                            <td>${producto.nombre} ${producto.existencias}</td>S
+                        </tr>
                     </c:forEach>
-</section>
-                    <tr>
-                        <td>Agua Bonafont</td>
-                        <td>1</td>
-                        <td>$13</td>
-                        <td><a href="${pageContext.request.contextPath}/ServletMenu?accion=eliminar&idVenta=${venta.idVenta}"><span class="material-symbols-outlined">
-                                    delete
-                                </span></a></td>
-                    </tr>
+                </section>
+                <tr>
+                    <td>Agua Bonafont</td>
+                    <td>1</td>
+                    <td>$13</td>
+                    <td><a href="${pageContext.request.contextPath}/ServletMenu?accion=eliminar&idVenta=${venta.idVenta}"><span class="material-symbols-outlined">
+                                delete
+                            </span></a></td>
+                </tr>
                 </tbody>
             </table>
         </div>
