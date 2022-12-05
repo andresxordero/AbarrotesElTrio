@@ -21,6 +21,8 @@ public class DetalleVentaDAO {
             + " SET IDVenta=?, IDProducto=?, Cantidad=?, Total=? WHERE IDDetalleVenta=?";
 
     private static final String SQL_DELETE = "DELETE FROM detalle_venta WHERE IDDetalleVenta = ?";
+    
+    private static final String SQL_VENTA_PRODUCTO = "UPDATE FROM producto VALUE SET Existencias = ? WHERE IDProducto = ?";
 
     public List<DetalleVenta> listar() {
         Connection conn = null;
@@ -100,8 +102,8 @@ public class DetalleVentaDAO {
 
             stmt.setInt(1, detalleVenta.getIdVenta());
             stmt.setInt(2, detalleVenta.getIdProducto());
-            stmt.setInt(4, detalleVenta.getCantidad());
-            stmt.setDouble(5, detalleVenta.getTotal());
+            stmt.setInt(3, detalleVenta.getCantidad());
+            stmt.setDouble(4, detalleVenta.getTotal());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -154,6 +156,28 @@ public class DetalleVentaDAO {
             ex.printStackTrace(System.out);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DetalleVentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
+        }
+        return rows;
+    }
+    
+    public int reducirProducto(int idProducto, int nuevaExistencia) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_VENTA_PRODUCTO);
+            stmt.setInt(1, nuevaExistencia);
+            stmt.setInt(2, idProducto);
+
+            rows = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VentaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConexionBD.close(stmt);
             ConexionBD.close(conn);

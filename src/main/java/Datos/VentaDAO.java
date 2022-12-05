@@ -21,6 +21,8 @@ public class VentaDAO {
             + " SET IDVendedor=?, Fecha=?, CostoTotal=? WHERE IDVenta=?";
 
     private static final String SQL_DELETE = "DELETE FROM venta WHERE IDVenta = ?";
+    
+    private static final String SQL_COSTO = "UPDATE FROM venta VALUE SET CostoTotal = ? WHERE IDVenta = ?";
 
     public List<Venta> listar() {
         Connection conn = null;
@@ -155,5 +157,29 @@ public class VentaDAO {
         }
         return rows;
     }
+    
+    public int actualizarCosto(int idVenta, double nuevoCosto) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_COSTO);
+            stmt.setDouble(1, nuevoCosto);
+            stmt.setInt(2, idVenta);
+
+            rows = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
+        }
+        return rows;
+    }
+    
+    
 
 }

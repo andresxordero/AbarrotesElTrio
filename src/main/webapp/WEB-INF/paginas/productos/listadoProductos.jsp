@@ -3,7 +3,10 @@
 <div class="box">
     <div class="superior">
         <h2>Registros de productos</h2>
-        <button type="submit">Nuevo registro</button>
+        <form action="${pageContext.request.contextPath}/ServletInventario?accion=registrarProducto" method="POST">
+            <button id="agregar" type="submit">Nuevo registro</button>
+        </form>
+
     </div>
 
     <div class="container">

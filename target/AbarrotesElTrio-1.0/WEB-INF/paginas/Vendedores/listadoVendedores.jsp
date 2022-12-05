@@ -1,22 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="box">
-      <div class="superior">
+    <div class="superior">
         <h2>Registros de vendedores</h2>
         <button type="submit">Nuevo registro</button>
-      </div>
+    </div>
 
-      <div class="container">
+    <div class="container">
         <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Teléfono</th>
-            </tr>
-          </thead>
-          <tbody>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
             <section id = "vendedores">  
                 <c:forEach var="vendedor" items="${vendedores}" varStatus="status" >
                     <tr>
@@ -29,7 +29,7 @@
                     </tr>
                 </c:forEach>
             </section>
-          </tbody>
+            </tbody>
         </table>
-      </div>
     </div>
+</div>

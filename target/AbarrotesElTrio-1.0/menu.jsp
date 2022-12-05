@@ -1,3 +1,4 @@
+<%@page import="dominio.Vendedor"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -17,15 +18,22 @@
     </head>
 
     <body>
+        <%
+            HttpSession sesion = request.getSession();
+            Vendedor usuario = (Vendedor) sesion.getAttribute("usuario");
+            if (usuario.getRol().equals("Administrador")) {
+        %>
+        <jsp:include page="WEB-INF/paginas/comunes/navbarAdmin.jsp"/>
+        <%
+        } else {
+        %>
+        <jsp:include page="WEB-INF/paginas/comunes/navbarVendedor.jsp"/>
+        <%
+            }
+        %>
 
-        <!--Navbar-->
-        
-        <!--Navbar-->
-        
-        <jsp:include page="/WEB-INF/paginas/comunes/navbarAdmin.jsp"/>
-        
         <jsp:include page="WEB-INF/paginas/ventas/formVentas.jsp"/>
-        
+
     </body>
 
 </html>
