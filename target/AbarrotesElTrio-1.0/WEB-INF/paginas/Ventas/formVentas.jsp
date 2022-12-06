@@ -11,9 +11,9 @@
 
 <div class="general">
 
-        <form action="${pageContext.request.contextPath}/ServletMenu?accion=agregarVenta" method="POST">
-            <button type="submit" id="terminar">Empezar</button>
-        </form>
+    <form action="${pageContext.request.contextPath}/ServletMenu?accion=agregarVenta" method="POST">
+        <button type="submit" id="empezar">Empezar</button>
+    </form>
     <div class="box">
         <form action="${pageContext.request.contextPath}/ServletMenu?accion=agregarProductoDeVenta" method="POST">
             <button id="agregar" type="submit">Agregar</button>
@@ -34,8 +34,8 @@
             </section>
         </form>
 
-            
-            <form style="margin-top: 5rem" action="${pageContext.request.contextPath}/ServletInventario" method="POST">
+
+        <form style="margin-top: 5rem" action="${pageContext.request.contextPath}/ServletInventario" method="POST">
             <button type="submit" id="terminar">Finalizar</button>
         </form>
 
@@ -58,7 +58,7 @@
                         for (DetalleVenta detalleVenta : detalleVentas) {
                             if (detalleVenta.getIdVenta() == venta2.getIdVenta()) {
                     %>
-                   
+
                     <tr>
                         <td><%out.print(detalleVenta.getIdDetalleVenta());%></td>
                         <td><%out.print(detalleVenta.getIdVenta());%></td>                            

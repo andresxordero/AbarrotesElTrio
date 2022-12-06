@@ -22,12 +22,22 @@ public class Producto {
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
     }
+    
+    
 
     public Producto(int idProducto, String nombre, String descripcion, int existencias, double precioVenta, double precioCompra) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.existencias = existencias;
+        this.precioVenta = precioVenta;
+        this.precioCompra = precioCompra;
+    }
+    
+     public Producto(int idProducto, String nombre, String descripcion, double precioVenta, double precioCompra) {
+        this.idProducto = idProducto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.precioVenta = precioVenta;
         this.precioCompra = precioCompra;
     }

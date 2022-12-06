@@ -155,12 +155,11 @@ public class ServletInventario extends HttpServlet {
         int idProducto = Integer.parseInt(request.getParameter("idProducto"));
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
-        int existencias = Integer.parseInt(request.getParameter("existencias"));
         double precioVenta = Double.parseDouble(request.getParameter("precioVenta"));
         double precioCompra = Double.parseDouble(request.getParameter("precioCompra"));
 
         //Creamos el objeto de cliente (modelo)
-        Producto producto = new Producto(idProducto, nombre, descripcion, existencias, precioVenta, precioCompra);
+        Producto producto = new Producto(idProducto, nombre, descripcion, precioVenta, precioCompra);
 
         //Modificar el  objeto en la base de datos
         int registrosModificados = new ProductoDAO().actualizar(producto);

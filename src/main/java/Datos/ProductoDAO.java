@@ -18,7 +18,7 @@ public class ProductoDAO {
             + " VALUES(?, ?, ?, ?, ?)";
 
     private static final String SQL_UPDATE = "UPDATE producto "
-            + " SET Nombre=?, Descripcion=?, Existencias=?, PrecioVenta=?, PrecioCompra=? WHERE IDProducto=?";
+            + " SET Nombre=?, Descripcion=?, PrecioVenta=?, PrecioCompra=? WHERE IDProducto=?";
 
     private static final String SQL_DELETE = "DELETE FROM producto WHERE IDProducto = ?";
     
@@ -130,10 +130,9 @@ public class ProductoDAO {
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setString(1, producto.getNombre());
             stmt.setString(2, producto.getDescripcion());
-            stmt.setInt(3, producto.getExistencias());
-            stmt.setDouble(4, producto.getPrecioVenta());
-            stmt.setDouble(5, producto.getPrecioCompra());
-            stmt.setInt(6, producto.getIdProducto());
+            stmt.setDouble(3, producto.getPrecioVenta());
+            stmt.setDouble(4, producto.getPrecioCompra());
+            stmt.setInt(5, producto.getIdProducto());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
