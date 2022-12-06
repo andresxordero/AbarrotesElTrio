@@ -59,11 +59,19 @@
             <p id="puno" style="margin-top:4rem">ID de la Venta</p>
             <p id="pdos" >Cantidad</p>
             <section id = "ventas"> 
-                <div class="texbox1" style="margin-top:4rem; ">
-                    <input id="dos"  type="number"  placeholder="" min="1" name="idVenta" required/>
-                </div>
                 <div class="texbox1">
-                    <input id="dos"  type="number" placeholder="" min="1" name="idProducto" required/>
+                    <select name="idVentas" id="idVentas">
+                        <c:forEach var="venta" items="${ventas}" varStatus="status">
+                            <option value="${venta.idVenta}">${venta.idVenta}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="texbox1" style="margin-top: 5rem;">
+                    <select name="idProductos" id="idProductos">
+                        <c:forEach var="producto" items="${productos}" varStatus="status">
+                            <option value="${producto.idProducto}">${producto.idProducto}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <div class="texbox2">
                     <input id="dos"  type="number" placeholder="" min="1" name="cantidad" required/>

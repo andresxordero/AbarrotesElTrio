@@ -3,7 +3,9 @@
 <div class="box">
     <div class="superior">
         <h2>Registros de vendedores</h2>
-        <button type="submit">Nuevo registro</button>
+         <form action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarVendedorForm" method="POST">
+            <button id="agregar" type="submit">Nuevo registro</button>
+        </form>
     </div>
 
     <div class="container">
@@ -23,7 +25,7 @@
                         <td>${vendedor.idVendedor}</td>
                         <td>${vendedor.nombre} </td>                            
                         <td>${vendedor.telefono}</td>
-                        <td><a href="${pageContext.request.contextPath}/ServletInventario?accion=editarVendedor&idVendedor=${vendedor.idVendedor}"><span class="material-symbols-outlined eliminar">
+                        <td><a href="${pageContext.request.contextPath}/ServletAdministracion?accion=eliminarVendedor&idVendedor=${vendedor.idVendedor}"><span class="material-symbols-outlined eliminar">
                                     delete
                                 </span></a></td>
                     </tr>

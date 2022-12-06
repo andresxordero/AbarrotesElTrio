@@ -117,14 +117,14 @@ public class ServletMenu extends HttpServlet {
     private void eliminarVenta(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //int idVenta = Integer.parseInt(request.getParameter("idVenta"));
-        //Venta venta = new Venta(idVenta);
+        int idVenta = Integer.parseInt(request.getParameter("idVenta"));
+        Venta venta = new Venta(idVenta);
 
-        //int b = new VentaDAO().eliminar(venta);
+        int b = new VentaDAO().eliminar(venta);
         
         
 
-        //this.accionDefault(request, response);
+        this.accionDefault(request, response);
     }
 
     private void agregarProductoDeVenta(HttpServletRequest request, HttpServletResponse response)
@@ -132,8 +132,8 @@ public class ServletMenu extends HttpServlet {
         HttpSession sesion = request.getSession();
         List<Producto> productos = (List<Producto>) sesion.getAttribute("productos");
 
-        int idVenta = Integer.parseInt(request.getParameter("idVenta"));
-        int idProducto = Integer.parseInt(request.getParameter("idProducto"));
+        int idVenta = Integer.parseInt(request.getParameter("idVentas"));
+        int idProducto = Integer.parseInt(request.getParameter("idProductos"));
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 
         if (this.validarCantidades(productos, idProducto, cantidad)) {

@@ -17,11 +17,23 @@ public class ServletAdministracion extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion != null) {
             switch (accion) {
-                case "editar":
-                    this.editarAlta(request, response);
+                case "registrarVendedorForm":
+                    this.registrarVendedorForm(request, response);
                     break;
-                case "eliminar":
-                    this.eliminarAlta(request, response);
+                case "editarVendedor":
+                    this.editarVendedor(request, response);
+                    break;
+                case "eliminarVendedor":
+                    this.eliminarVendedor(request, response);
+                    break;
+                case "registrarProveedorForm":
+                    this.registrarProveedorForm(request, response);
+                    break;
+                case "editarProveedor":
+                    this.editarProveedor(request, response);
+                    break;
+                case "eliminarProveedor":
+                    this.eliminarProveedor(request, response);
                     break;
                 default:
                     this.accionDefault(request, response);
@@ -53,28 +65,29 @@ public class ServletAdministracion extends HttpServlet {
         response.sendRedirect("administracion.jsp");
     }
     
-    
-    private void editarAlta(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //recuperamos el idCliente
-        int idAlta = Integer.parseInt(request.getParameter("IDAlta"));
-        Alta alta = new AltaDAO().encontrar(new Alta(idAlta));
-        request.setAttribute("alta", alta);
-        String jspEditar = "/WEB-INF/paginas/alta/editarAlta.jsp";
-        request.getRequestDispatcher(jspEditar).forward(request, response);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         if (accion != null) {
             switch (accion) {
-                case "insertar":
-                    this.insertarAlta(request, response);
+                case "registrarVendedorForm":
+                    this.registrarVendedorForm(request, response);
                     break;
-                case "modificar":
-                    this.modificarAlta(request, response);
+                case "editarVendedor":
+                    this.editarVendedor(request, response);
+                    break;
+                case "eliminarVendedor":
+                    this.eliminarVendedor(request, response);
+                    break;
+                case "registrarProveedorForm":
+                    this.registrarProveedorForm(request, response);
+                    break;
+                case "editarProveedor":
+                    this.editarProveedor(request, response);
+                    break;
+                case "eliminarProveedor":
+                    this.eliminarProveedor(request, response);
                     break;
                 default:
                     this.accionDefault(request, response);
@@ -84,60 +97,61 @@ public class ServletAdministracion extends HttpServlet {
         }
     }
 
-    private void insertarAlta(HttpServletRequest request, HttpServletResponse response)
+    private void registrarVendedorForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //recuperamos los valores del formulario agregarCliente
-        int IDProducto = Integer.parseInt(request.getParameter("IDProducto"));
-        int IDProveedor = Integer.parseInt(request.getParameter("IDProveedor"));
-        String Fecha = request.getParameter("Fecha");
-        int Cantidad = Integer.parseInt(request.getParameter("Cantidad"));
-
-        //Creamos el objeto de cliente (modelo)
-        Alta alta = new Alta(IDProducto, IDProveedor, Fecha, Cantidad);
-
-        //Insertamos el nuevo objeto en la base de datos
-        int registrosModificados = new AltaDAO().insertar(alta);
-        System.out.println("registrosModificados = " + registrosModificados);
-
-        //Redirigimos hacia accion por default
-        this.accionDefault(request, response);
+        String jspRegistrar = "/WEB-INF/paginas/vendedores/formVendedores.jsp";
+        request.getRequestDispatcher(jspRegistrar).forward(request, response);
     }
-
-    private void modificarAlta(HttpServletRequest request, HttpServletResponse response)
+    
+    private void registrarProveedorForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //recuperamos los valores del formulario editarCliente
-        int IDAlta = Integer.parseInt(request.getParameter("IDAlta"));
-        int IDProducto = Integer.parseInt(request.getParameter("IDProducto"));
-        int IDProveedor = Integer.parseInt(request.getParameter("IDProveedor"));
-        String Fecha = request.getParameter("Fecha");
-        int Cantidad = Integer.parseInt(request.getParameter("Cantidad"));
+        String jspRegistrar = "/WEB-INF/paginas/proveedores/formProveedores.jsp";
+        request.getRequestDispatcher(jspRegistrar).forward(request, response);
+    }
+    
+    private void editarVendedor(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperamos el idProducto
+        int idProducto = Integer.parseInt(request.getParameter("idProducto"));
+        Producto producto = new ProductoDAO().encontrar(new Producto(idProducto));
+        request.setAttribute("producto", producto);
+        String jspEditar = "/WEB-INF/paginas/productos/formProductos.jsp";
+        request.getRequestDispatcher(jspEditar).forward(request, response);
+    }
+    
+    private void editarProveedor(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperamos el idProducto
+        int idProducto = Integer.parseInt(request.getParameter("idProducto"));
+        Producto producto = new ProductoDAO().encontrar(new Producto(idProducto));
+        request.setAttribute("producto", producto);
+        String jspEditar = "/WEB-INF/paginas/productos/formProductos.jsp";
+        request.getRequestDispatcher(jspEditar).forward(request, response);
+    }
+    
+    private void eliminarVendedor(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-        //Creamos el objeto de cliente (modelo)
-        Alta alta = new Alta(IDAlta, IDProducto, IDProveedor, Fecha, Cantidad);
+        int idVendedor = Integer.parseInt(request.getParameter("idVendedor"));
+        Vendedor vendedor = new Vendedor(idVendedor);
 
-        //Modificar el  objeto en la base de datos
-        int registrosModificados = new AltaDAO().actualizar(alta);
-        System.out.println("registrosModificados = " + registrosModificados);
+        int b = new VendedorDAO().eliminar(vendedor);
+        
+        
 
-        //Redirigimos hacia accion por default
         this.accionDefault(request, response);
     }
     
-        private void eliminarAlta(HttpServletRequest request, HttpServletResponse response)
+    private void eliminarProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //recuperamos los valores del formulario editarCliente
-        int IDAlta = Integer.parseInt(request.getParameter("IDAlta"));
-     
 
-        //Creamos el objeto de cliente (modelo)
-        Alta alta = new Alta(IDAlta);
+        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        Proveedor proveedor = new Proveedor(idProveedor);
 
-        //Eliminamos el  objeto en la base de datos
-        int registrosModificados = new AltaDAO().eliminar(alta);
-        System.out.println("registrosModificados = " + registrosModificados);
+        int b = new ProveedorDAO().eliminar(proveedor);
+        
+        
 
-        //Redirigimos hacia accion por default
         this.accionDefault(request, response);
     }
-
 }

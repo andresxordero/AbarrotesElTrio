@@ -3,7 +3,7 @@
 <div class="box">
     <div class="superior">
         <h2>Registros de ventas</h2>
-        <button type="submit">Nuevo registro</button>
+        <a href="${pageContext.request.contextPath}/ServletMenu"><button type="submit">Nuevo registro</button></a>
     </div>
 
     <div class="container">
@@ -24,9 +24,6 @@
                         <td>${venta.idVendedor} </td>                            
                         <td>${venta.fecha}</td>
                         <td>${venta.costoTotal}</td>
-                        <td><a href="${pageContext.request.contextPath}/ServletInventario?accion=editarVenta&idCliente=${venta.idVenta}"><span class="material-symbols-outlined eliminar">
-                                    delete
-                                </span></a></td>
                     </tr>
                 </c:forEach>
             </section>

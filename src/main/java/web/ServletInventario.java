@@ -17,20 +17,20 @@ public class ServletInventario extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion != null) {
             switch (accion) {
-                case "registrarVenta":
-                    //this.registrarVenta(request, response);
+                case "registrarVentaForm":
+                    this.registrarVenta(request, response);
                     break;
-                case "registrarProducto":
-                    this.registrarProducto(request, response);
+                case "registrarProductoForm":
+                    this.registrarProductoForm(request, response);
                     break;
                 case "editarProducto":
                     this.editarProducto(request, response);
                     break;
                 case "eliminarProducto":
-                    //this.eliminarProducto(request, response);
+                    this.eliminarProducto(request, response);
                     break;
-                case "registrarAlta":
-                    //this.registrarAlta(request, response);
+                case "registrarAltaForm":
+                    this.registrarAltaForm(request, response);
                     break;
                 default:
                     this.accionDefault(request, response);
@@ -69,20 +69,20 @@ public class ServletInventario extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion != null) {
             switch (accion) {
-                case "registrarVenta":
-                    //this.registrarVenta(request, response);
+                case "registrarVentaForm":
+                    this.registrarVenta(request, response);
                     break;
-                case "registrarProducto":
-                    this.registrarProducto(request, response);
+                case "registrarProductoForm":
+                    this.registrarProductoForm(request, response);
                     break;
                 case "editarProducto":
                     this.editarProducto(request, response);
                     break;
                 case "eliminarProducto":
-                    //this.eliminarProducto(request, response);
+                    this.eliminarProducto(request, response);
                     break;
-                case "registrarAlta":
-                    //this.registrarAlta(request, response);
+                case "registrarAltaForm":
+                    this.registrarAltaForm(request, response);
                     break;
                 default:
                     this.accionDefault(request, response);
@@ -92,61 +92,46 @@ public class ServletInventario extends HttpServlet {
         }
     }
     
+    private void registrarVenta(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("menu.jsp").forward(request, response);
+    }
     
+    private void registrarProductoForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String jspRegistrar = "/WEB-INF/paginas/productos/formProductos.jsp";
+        request.getRequestDispatcher(jspRegistrar).forward(request, response);
+    }
     
     private void editarProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //recuperamos el idProducto
         int idProducto = Integer.parseInt(request.getParameter("idProducto"));
         Producto producto = new ProductoDAO().encontrar(new Producto(idProducto));
-        request.setAttribute("produdcto", producto);
-        String jspEditar = "/WEB-INF/paginas/productos/formProductos.jsp";
-        request.getRequestDispatcher(jspEditar).forward(request, response);
-    }
-    
-    private void registrarProducto(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //response.sendRedirect("formProductos.jsp");
-        
+        request.setAttribute("producto", producto);
         String jspEditar = "/WEB-INF/paginas/productos/formProductos.jsp";
         request.getRequestDispatcher(jspEditar).forward(request, response);
     }
 
-    private void modificarAlta(HttpServletRequest request, HttpServletResponse response)
+    private void eliminarProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //recuperamos los valores del formulario editarCliente
-        int IDAlta = Integer.parseInt(request.getParameter("IDAlta"));
-        int IDProducto = Integer.parseInt(request.getParameter("IDProducto"));
-        int IDProveedor = Integer.parseInt(request.getParameter("IDProveedor"));
-        String Fecha = request.getParameter("Fecha");
-        int Cantidad = Integer.parseInt(request.getParameter("Cantidad"));
-
+        int idProducto = Integer.parseInt(request.getParameter("idPrducto"));
         //Creamos el objeto de cliente (modelo)
-        Alta alta = new Alta(IDAlta, IDProducto, IDProveedor, Fecha, Cantidad);
-
-        //Modificar el  objeto en la base de datos
-        int registrosModificados = new AltaDAO().actualizar(alta);
-        System.out.println("registrosModificados = " + registrosModificados);
-
-        //Redirigimos hacia accion por default
-        this.accionDefault(request, response);
-    }
-    
-        private void eliminarAlta(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //recuperamos los valores del formulario editarCliente
-        int IDAlta = Integer.parseInt(request.getParameter("IDAlta"));
-     
-
-        //Creamos el objeto de cliente (modelo)
-        Alta alta = new Alta(IDAlta);
+        Producto producto = new Producto(idProducto);
 
         //Eliminamos el  objeto en la base de datos
-        int registrosModificados = new AltaDAO().eliminar(alta);
+        int registrosModificados = new ProductoDAO().eliminar(producto);
         System.out.println("registrosModificados = " + registrosModificados);
 
         //Redirigimos hacia accion por default
         this.accionDefault(request, response);
     }
+
+    private void registrarAltaForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String jspRegistrar = "/WEB-INF/paginas/altas/formAltas.jsp";
+        request.getRequestDispatcher(jspRegistrar).forward(request, response);
+    }   
 
 }
