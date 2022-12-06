@@ -16,12 +16,13 @@ public class Vendedor {
         this.idVendedor = idVendedor;
     }
 
-    public Vendedor(String nombre, String apellido, String telefono, String usuario, String password) {
+    public Vendedor(String nombre, String apellido, String telefono, String usuario, String password, String rol) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.usuario = usuario;
         this.password = password;
+        this.rol = rol;
     }
 
     public Vendedor(int idVendedor, String nombre, String apellido, String telefono, String usuario, String password, String rol) {

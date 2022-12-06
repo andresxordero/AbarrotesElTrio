@@ -45,14 +45,14 @@ body {
 }
 
 .eliminar:hover { /*CAMBIO*/
-    color: white !important;
+    color: red !important;
 }
 
 .material-symbols-outlined:hover { /*CAMBIO*/
     font-size: 2rem;
     transition: .3s;
     cursor: pointer;
-    color: white;
+    
 }
 
 .header img {
@@ -142,22 +142,21 @@ input {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+
 select {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    outline: none;
-    padding: 10px 20px;
-    border-radius: 35px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-size:  .8rem;
-    height: 2.5rem;
-    letter-spacing: 1px;
-    color: #fff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+   border-radius: 35px;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   border-right: 1px solid rgba(255, 255, 255, 0.1);
+   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+   background: rgba(255, 255, 255, 0.2);
+   padding: 20px 20px;
+   border: none;
+   font-size: 14px;
+   height: 30px;
+   padding: 5px;
+   width: 250px;
 }
+select:focus{ outline: none;}
 
 h2 {
     position: absolute;
@@ -183,7 +182,16 @@ h3 {
 
 .texbox1 {
     position: absolute;
-    top: 24%;
+    top: 10%;
+    left: 5%;
+    width: 15rem;
+    align-self: start;
+    justify-self: start;
+}
+
+.texbox11 {
+    position: absolute;
+    top: 8%;
     left: 5%;
     width: 15rem;
     align-self: start;
@@ -192,7 +200,7 @@ h3 {
 
 .texbox2 {
     position: absolute;
-    top: 24%;
+    top: 17%;
     width: 15rem;
     left: 40%;
     align-self: start;
@@ -201,7 +209,16 @@ h3 {
 
 #puno {
     position: absolute;
-    top: 19%;
+    top: 5%;
+    left: 5%;
+    align-self: start;
+    justify-self: start;
+    color: white;
+}
+
+#punos {
+    position: absolute;
+    top: 5%;
     left: 5%;
     align-self: start;
     justify-self: start;
@@ -211,7 +228,7 @@ h3 {
 #pdos {
     position: absolute;
     color: white;
-    top: 19%;
+    top: 12%;
     left: 40%;
     align-self: start;
     justify-self: start;
@@ -219,7 +236,7 @@ h3 {
 #agregar {
     position: absolute;
     background: white;
-    top: 24.5%;
+    top: 20%;
     left: 80%;
     border: none;
     height: 2.2rem;

@@ -22,7 +22,12 @@ public class DetalleVentaDAO {
 
     private static final String SQL_DELETE = "DELETE FROM detalle_venta WHERE IDDetalleVenta = ?";
     
-    private static final String SQL_VENTA_PRODUCTO = "UPDATE FROM producto VALUE SET Existencias = ? WHERE IDProducto = ?";
+    private static final String SQL_VENTA_PRODUCTO = "UPDATE producto VALUE SET Existencias = ? WHERE IDProducto = ?";
+    
+    private static final String SQL_LISTAR_POR_IDVENTA = "SELECT IDDetalleVenta, IDVenta, IDProducto, Cantidad, Total "
+            + " FROM detalle_venta WHERE IDVenta = ?";
+    
+    
 
     public List<DetalleVenta> listar() {
         Connection conn = null;
@@ -34,6 +39,40 @@ public class DetalleVentaDAO {
             conn = ConexionBD.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
+            while (rs.next()) {
+                int IDDetalleVenta = rs.getInt("IDDetalleVenta");
+                int IDVenta = rs.getInt("IDVenta");
+                int IDProducto = rs.getInt("IDProducto");
+                int Cantidad = rs.getInt("Cantidad");
+                double Total = rs.getDouble("Total");
+
+                detalleVenta = new DetalleVenta(IDDetalleVenta, IDVenta, IDProducto, Cantidad, Total);
+                detalleVentas.add(detalleVenta);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DetalleVentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(rs);
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
+        }
+        return detalleVentas;
+    }
+    
+    public List<DetalleVenta> listarPorIdVenta(DetalleVenta detalleVenta) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<DetalleVenta> detalleVentas = new ArrayList<>();
+        try {
+            conn = ConexionBD.getConnection();
+            stmt.setInt(1, detalleVenta.getIdDetalleVenta());
+            stmt = conn.prepareStatement(SQL_LISTAR_POR_IDVENTA);
+            rs = stmt.executeQuery();
+            
+            
             while (rs.next()) {
                 int IDDetalleVenta = rs.getInt("IDDetalleVenta");
                 int IDVenta = rs.getInt("IDVenta");
@@ -163,7 +202,7 @@ public class DetalleVentaDAO {
         return rows;
     }
     
-    public int reducirProducto(int idProducto, int nuevaExistencia) {
+    public int modificarProducto(int idProducto, int nuevaExistencia) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;

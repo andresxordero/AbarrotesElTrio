@@ -22,7 +22,9 @@ public class VentaDAO {
 
     private static final String SQL_DELETE = "DELETE FROM venta WHERE IDVenta = ?";
     
-    private static final String SQL_COSTO = "UPDATE FROM venta VALUE SET CostoTotal = ? WHERE IDVenta = ?";
+    private static final String SQL_COSTO = "UPDATE venta VALUE SET CostoTotal = ? WHERE IDVenta = ?";
+    
+    private static final String SQL_SELECT_LAST = "SELECT * FROM venta ORDER BY IDVenta DESC LIMIT 1;";
 
     public List<Venta> listar() {
         Connection conn = null;
@@ -72,6 +74,41 @@ public class VentaDAO {
                 String Fecha = rs.getString("Fecha");
                 double CostoTotal = rs.getDouble("CostoTotal");
 
+                venta.setIdVendedor(IDVendedor);
+                venta.setFecha(Fecha);
+                venta.setCostoTotal(CostoTotal);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VentaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(rs);
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
+        }
+        return venta;
+    }
+    
+    public Venta encontrarUltimo() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Venta venta = new Venta();
+        try {
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_LAST);
+            rs = stmt.executeQuery();
+            //rs.absolute(1);
+
+            while (rs.next()) {
+                int IDVenta = rs.getInt("IDVenta");
+                int IDVendedor = rs.getInt("IDVendedor");
+                String Fecha = rs.getString("Fecha");
+                double CostoTotal = rs.getDouble("CostoTotal");
+
+                venta.setIdVenta(IDVenta);
                 venta.setIdVendedor(IDVendedor);
                 venta.setFecha(Fecha);
                 venta.setCostoTotal(CostoTotal);

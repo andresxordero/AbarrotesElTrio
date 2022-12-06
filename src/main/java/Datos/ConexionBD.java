@@ -16,7 +16,7 @@ public class ConexionBD {
     
     private static final String JDBC_URL="jdbc:mysql://localhost:3306/abarrotes?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String JDBC_USER="root";
-    private static final String JDBC_PASSWORD="Andres7Cordero";
+    private static final String JDBC_PASSWORD="123456";
     
   private static BasicDataSource dataSource;
 
