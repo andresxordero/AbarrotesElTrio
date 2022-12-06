@@ -21,6 +21,8 @@ public class ProductoDAO {
             + " SET Nombre=?, Descripcion=?, Existencias=?, PrecioVenta=?, PrecioCompra=? WHERE IDProducto=?";
 
     private static final String SQL_DELETE = "DELETE FROM producto WHERE IDProducto = ?";
+    
+    private static final String SQL_ALTA_PRODUCTO = "UPDATE producto VALUE SET Existencias = ? WHERE IDProducto = ?";
 
     public List<Producto> listar() {
         Connection conn = null;
@@ -159,6 +161,28 @@ public class ProductoDAO {
             ex.printStackTrace(System.out);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConexionBD.close(stmt);
+            ConexionBD.close(conn);
+        }
+        return rows;
+    }
+    
+    public int modificarProducto(int idProducto, int nuevaExistencia) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = ConexionBD.getConnection();
+            stmt = conn.prepareStatement(SQL_ALTA_PRODUCTO);
+            stmt.setInt(1, nuevaExistencia);
+            stmt.setInt(2, idProducto);
+
+            rows = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VentaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConexionBD.close(stmt);
             ConexionBD.close(conn);

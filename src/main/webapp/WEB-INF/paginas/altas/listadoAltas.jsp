@@ -16,7 +16,7 @@
               <th>ID del producto</th>
               <th>ID del proveedor</th>
               <th>Fecha</th>
-              <th>Cantidad de ventas</th>
+              <th>Cantidad de altas</th>
             </tr>
           </thead>
           <tbody>

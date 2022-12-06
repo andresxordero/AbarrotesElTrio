@@ -37,13 +37,13 @@
       <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarProveedor&idProveedor=${proveedor.idProveedor}" method="POST">
         <h2>Registrar proveedor</h2>
         <div class="inputBox">
-          <input type="text" placeholder="Nombre" required value="${proveedor.nombre}">
+          <input type="text" name="nombre" placeholder="Nombre" required value="${proveedor.nombre}">
         </div>
         <div class="inputBox">
-          <input type="number" placeholder="Telefono" required value="${proveedor.telefono}">
+          <input type="number" name="telefono" placeholder="Telefono" required value="${proveedor.telefono}">
         </div>
         <div class="inputBox">
-          <input type="email" placeholder="Correo" required value="${proveedor.correo}">
+          <input type="email" name="correo" placeholder="Correo" required value="${proveedor.correo}">
         </div>
         <button type="submit">Registrar</button>
       </form>

@@ -36,23 +36,23 @@
       <form class="form" action="${pageContext.request.contextPath}/ServletInventario?accion=registrarProducto&idProducto=${producto.idProducto}" method="POST">
         <h2>Registrar producto</h2>
         <div class="inputBox">
-          <input type="text" placeholder="Nombre" required value="${producto.nombre}">
+            <input type="text" name="nombre" placeholder="Nombre" required value="${producto.nombre}">
         </div>
         <div class="inputBox">
-          <input type="text" placeholder="Descripción" required value="${producto.descripcion}">
+            <input type="text" name="descripcion" placeholder="Descripción" required value="${producto.descripcion}">
         </div>
         <div class="inputBox">
-          <input type="number" placeholder="Existencias" required value="${producto.existencias}">
+            <input type="number" step="any" name="existencias" placeholder="Existencias" required value="${producto.existencias}">
         </div>
         <div class="inputBox">
-          <input type="text" placeholder="Precio de venta" required value="${producto.precioVenta}">
+            <input type="number" step="any" name="precioVenta" placeholder="Precio de venta" required value="${producto.precioVenta}">
         </div>
         <div class="inputBox">
-          <input type="text" placeholder="Precio de compra" required value="${producto.precioCompra}">
+            <input type="number" step="any" name="precioCompra" placeholder="Precio de compra" required value="${producto.precioCompra}">
         </div>
         <button type="submit">Registrar</button>
       </form>
-    </div>}
+    </div>
   </section>
   </div>
 </body>

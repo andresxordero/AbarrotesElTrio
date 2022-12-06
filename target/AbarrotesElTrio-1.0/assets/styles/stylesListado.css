@@ -16,6 +16,18 @@ body {
 }
 
 /*NAVBAR*/
+.enlace {
+    text-decoration: none  !important;  
+    color: black !important;
+}
+
+enlace:hover {
+    color: white;
+    transition: .3s;
+}
+
+
+/*NAVBAR*/
 
 .header {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -33,7 +45,7 @@ body {
 }
 
 .material-symbols-outlined {
-    color: #ff8f0e;
+    color: #FF8A00;
 }
 
 .salir:hover { /*CAMBIO*/
@@ -41,18 +53,13 @@ body {
 }
 
 .eliminar { /*CAMBIO*/
-    color: #77B6FF !important;
-}
-
-.eliminar:hover { /*CAMBIO*/
-    color: white !important;
+    color: #FF8A00 !important;
 }
 
 .material-symbols-outlined:hover { /*CAMBIO*/
     font-size: 2rem;
     transition: .3s;
     cursor: pointer;
-    color: white;
 }
 
 .header img {
@@ -182,11 +189,5 @@ td {
 }
 
 tbody tr {
-    cursor: pointer;
-}
-
-tbody tr:hover {
-    background: #ff8f0e;
-    color: white;
-    transition: .3s;
+    cursor: default;
 }

@@ -20,6 +20,9 @@ public class ServletAdministracion extends HttpServlet {
                 case "registrarVendedorForm":
                     this.registrarVendedorForm(request, response);
                     break;
+                case "registrarVendedor":
+                    this.registrarVendedor(request, response);
+                    break;
                 case "editarVendedor":
                     this.editarVendedor(request, response);
                     break;
@@ -28,6 +31,9 @@ public class ServletAdministracion extends HttpServlet {
                     break;
                 case "registrarProveedorForm":
                     this.registrarProveedorForm(request, response);
+                    break;
+                case "registrarProveedor":
+                    this.registrarVendedor(request, response);
                     break;
                 case "editarProveedor":
                     this.editarProveedor(request, response);
@@ -46,25 +52,25 @@ public class ServletAdministracion extends HttpServlet {
     private void accionDefault(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sesion = request.getSession();
-        
+
         List<Vendedor> vendedores = new VendedorDAO().listar();
         List<Alta> altas = new AltaDAO().listar();
         List<Producto> productos = new ProductoDAO().listar();
         List<Proveedor> proveedores = new ProveedorDAO().listar();
         List<Venta> ventas = new VentaDAO().listar();
         List<DetalleVenta> detalleVentas = new DetalleVentaDAO().listar();
-        
+
         sesion.setAttribute("vendedores", vendedores);
         sesion.setAttribute("altas", altas);
         sesion.setAttribute("productos", productos);
         sesion.setAttribute("proveedores", proveedores);
         sesion.setAttribute("ventas", ventas);
         sesion.setAttribute("detalleVentas", detalleVentas);
-        
+
         //request.getRequestDispatcher("administracion.jsp").forward(request, response);
         response.sendRedirect("administracion.jsp");
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -74,6 +80,9 @@ public class ServletAdministracion extends HttpServlet {
                 case "registrarVendedorForm":
                     this.registrarVendedorForm(request, response);
                     break;
+                case "registrarVendedor":
+                    this.registrarVendedor(request, response);
+                    break;
                 case "editarVendedor":
                     this.editarVendedor(request, response);
                     break;
@@ -82,6 +91,9 @@ public class ServletAdministracion extends HttpServlet {
                     break;
                 case "registrarProveedorForm":
                     this.registrarProveedorForm(request, response);
+                    break;
+                case "registrarProveedor":
+                    this.registrarProveedor(request, response);
                     break;
                 case "editarProveedor":
                     this.editarProveedor(request, response);
@@ -102,33 +114,70 @@ public class ServletAdministracion extends HttpServlet {
         String jspRegistrar = "/WEB-INF/paginas/vendedores/formVendedores.jsp";
         request.getRequestDispatcher(jspRegistrar).forward(request, response);
     }
-    
+
+    private void registrarVendedor(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String telefono = request.getParameter("telefono");
+        String usuario = request.getParameter("usuario");
+        String password = request.getParameter("password");
+        String rol = request.getParameter("rol");
+        
+        //Creamos el objeto de cliente (modelo)
+        Vendedor vendedor = new Vendedor(nombre, apellido, telefono, usuario, password, rol);
+
+        //Insertamos el nuevo objeto en la base de datos
+        int registrosModificados = new VendedorDAO().insertar(vendedor);
+        System.out.println("registrosModificados = " + registrosModificados);
+
+        //Redirigimos hacia accion por default
+        this.accionDefault(request, response);
+    }
+
     private void registrarProveedorForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String jspRegistrar = "/WEB-INF/paginas/proveedores/formProveedores.jsp";
         request.getRequestDispatcher(jspRegistrar).forward(request, response);
     }
     
+    private void registrarProveedor(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String nombre = request.getParameter("nombre");
+        String correo = request.getParameter("correo");
+        String telefono = request.getParameter("telefono");
+        
+        //Creamos el objeto de cliente (modelo)
+        Proveedor proveedor = new Proveedor(nombre, telefono, correo);
+
+        //Insertamos el nuevo objeto en la base de datos
+        int registrosModificados = new ProveedorDAO().insertar(proveedor);
+        System.out.println("registrosModificados = " + registrosModificados);
+
+        //Redirigimos hacia accion por default
+        this.accionDefault(request, response);
+    }
+
     private void editarVendedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //recuperamos el idProducto
-        int idProducto = Integer.parseInt(request.getParameter("idProducto"));
-        Producto producto = new ProductoDAO().encontrar(new Producto(idProducto));
-        request.setAttribute("producto", producto);
-        String jspEditar = "/WEB-INF/paginas/productos/formProductos.jsp";
+        int idVendedor = Integer.parseInt(request.getParameter("idVendedor"));
+        Vendedor vendedor = new VendedorDAO().encontrar(new Vendedor(idVendedor));
+        request.setAttribute("vendedor", vendedor);
+        String jspEditar = "/WEB-INF/paginas/vendedores/formVendedores.jsp";
         request.getRequestDispatcher(jspEditar).forward(request, response);
     }
-    
+
     private void editarProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //recuperamos el idProducto
-        int idProducto = Integer.parseInt(request.getParameter("idProducto"));
-        Producto producto = new ProductoDAO().encontrar(new Producto(idProducto));
-        request.setAttribute("producto", producto);
-        String jspEditar = "/WEB-INF/paginas/productos/formProductos.jsp";
+        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        Proveedor proveedor = new ProveedorDAO().encontrar(new Proveedor(idProveedor));
+        request.setAttribute("proveedor", proveedor);
+        String jspEditar = "/WEB-INF/paginas/proveedores/formProveedores.jsp";
         request.getRequestDispatcher(jspEditar).forward(request, response);
     }
-    
+
     private void eliminarVendedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -136,12 +185,10 @@ public class ServletAdministracion extends HttpServlet {
         Vendedor vendedor = new Vendedor(idVendedor);
 
         int b = new VendedorDAO().eliminar(vendedor);
-        
-        
 
         this.accionDefault(request, response);
     }
-    
+
     private void eliminarProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -149,8 +196,6 @@ public class ServletAdministracion extends HttpServlet {
         Proveedor proveedor = new Proveedor(idProveedor);
 
         int b = new ProveedorDAO().eliminar(proveedor);
-        
-        
 
         this.accionDefault(request, response);
     }

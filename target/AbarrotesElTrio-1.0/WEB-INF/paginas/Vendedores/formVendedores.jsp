@@ -34,16 +34,25 @@
   <div class="general">
       <section>
     <div class="container">
-      <form action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarVendedor&idVendedor=${vendedor.idVendedor}" method="POST">
+      <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarVendedor&idVendedor=${vendedor.idVendedor}" method="POST">
         <h2>Registrar vendedor</h2>
         <div class="inputBox">
-          <input type="text" placeholder="Nombre" required value="${vendedor.nombre}">
+            <input type="text" name="nombre" placeholder="Nombre" required value="${vendedor.nombre}">
         </div>
         <div class="inputBox">
-          <input type="text" placeholder="Apellido" required value="${vendedor.apellido}">
+            <input type="text" name="apellido" placeholder="Apellido" required value="${vendedor.apellido}">
         </div>
         <div class="inputBox">
-          <input type="number" placeholder="Teléfono" required value="${vendedor.telefono}">
+            <input type="number" name="telefono" placeholder="Teléfono" required value="${vendedor.telefono}">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="usuario" placeholder="Nombre de usuario" required value="${vendedor.usuario}">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="password" placeholder="Contraseña" required value="${vendedor.password}">
+        </div>
+        <div class="inputBox">
+            <input type="text" name="rol" placeholder="Rol" required value="${vendedor.rol}">
         </div>
         <button type="submit">Registrar</button>
       </form>
