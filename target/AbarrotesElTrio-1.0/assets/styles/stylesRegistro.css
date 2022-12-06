@@ -105,6 +105,39 @@ section {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+select {
+   width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 2.5rem;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: black;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+select:focus{ outline: none;
+   width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size:  .8rem;
+    height: 2.5rem;
+    letter-spacing: 1px;
+    color: black;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 .form {
     position: relative;
     width: 100%;
@@ -121,26 +154,16 @@ section {
     margin-bottom: 2rem;
 }
 
-.comboBox {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    outline: none;
-    padding: 10px 20px;
-    border-radius: 35px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #fff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.input2 {
+    color: black !important;
 }
 
 .form .inputBox {
     width: 100%;
     margin-top: 20px;
 }
+
+::placeholder { color: black;}
 
 .form .inputBox input {
     width: 100%;
@@ -154,7 +177,7 @@ section {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 16px;
     letter-spacing: 1px;
-    color: #fff;
+    color: black;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 

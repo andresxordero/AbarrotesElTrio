@@ -29,6 +29,9 @@ public class ServletInventario extends HttpServlet {
                 case "editarProducto":
                     this.editarProducto(request, response);
                     break;
+                case "modificarProducto":
+                    this.modificarProducto(request, response);
+                    break;
                 case "eliminarProducto":
                     this.eliminarProducto(request, response);
                     break;
@@ -86,6 +89,9 @@ public class ServletInventario extends HttpServlet {
                 case "editarProducto":
                     this.editarProducto(request, response);
                     break;
+                case "modificarProducto":
+                    this.modificarProducto(request, response);
+                    break;               
                 case "eliminarProducto":
                     this.eliminarProducto(request, response);
                     break;
@@ -118,7 +124,7 @@ public class ServletInventario extends HttpServlet {
             throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
-        int existencias = Integer.parseInt(request.getParameter("existencias"));
+        int existencias = 0;
         Double precioVenta = Double.parseDouble(request.getParameter("precioVenta"));
         Double precioCompra = Double.parseDouble(request.getParameter("precioCompra"));
 
@@ -139,8 +145,29 @@ public class ServletInventario extends HttpServlet {
         int idProducto = Integer.parseInt(request.getParameter("idProducto"));
         Producto producto = new ProductoDAO().encontrar(new Producto(idProducto));
         request.setAttribute("producto", producto);
-        String jspEditar = "/WEB-INF/paginas/productos/formProductos.jsp";
+        String jspEditar = "/WEB-INF/paginas/productos/formProductosUpdate.jsp";
         request.getRequestDispatcher(jspEditar).forward(request, response);
+    }
+    
+    private void modificarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperamos los valores del formulario editarCliente
+        int idProducto = Integer.parseInt(request.getParameter("idProducto"));
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
+        int existencias = Integer.parseInt(request.getParameter("existencias"));
+        double precioVenta = Double.parseDouble(request.getParameter("precioVenta"));
+        double precioCompra = Double.parseDouble(request.getParameter("precioCompra"));
+
+        //Creamos el objeto de cliente (modelo)
+        Producto producto = new Producto(idProducto, nombre, descripcion, existencias, precioVenta, precioCompra);
+
+        //Modificar el  objeto en la base de datos
+        int registrosModificados = new ProductoDAO().actualizar(producto);
+        System.out.println("registrosModificados = " + registrosModificados);
+
+        //Redirigimos hacia accion por default
+        this.accionDefault(request, response);
     }
 
     private void eliminarProducto(HttpServletRequest request, HttpServletResponse response)

@@ -13,7 +13,7 @@
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="shortcut icon" href="assets/img/icono.ico" type="image/x-icon">
-        <title>Panel de Inventario</title>
+        <title>Menú</title>
     </head>
 
     <body>
@@ -40,7 +40,7 @@
                             <p class="subtitle">ID del producto</p>
                             <select class="comboBox" name="idProductos" id="idProductos">
                                 <c:forEach var="producto" items="${productos}" varStatus="status">
-                                    <option value="${producto.idProducto}">${producto.idProducto}</option>
+                                    <option class="" value="${producto.idProducto}">${producto.idProducto} (${producto.nombre})</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -48,16 +48,17 @@
                             <p class="subtitle">ID del proveedor</p>
                             <select class="comboBox" name="idProveedores" id="idProveedor">
                                 <c:forEach var="proveedor" items="${proveedores}" varStatus="status">
-                                    <option value="${proveedor.idProveedor}">${proveedor.idProveedor}</option>
+                                    <option value="${proveedor.idProveedor}">${proveedor.idProveedor} (${proveedor.nombre})</option>
                                 </c:forEach>
                             </select>
                         </div>
                         <div class="inputBox">
                             <p class="subtitle">Fecha</p>
-                            <input type="date" name="fecha" placeholder="Fecha" required value="${alta.fecha}">
+                            <input type="date" name="fecha" required value="${alta.fecha}">
                         </div>
                         <div class="inputBox">
-                            <input type="number" step="any" name="cantidad" placeholder="Cantidad" required value="${alta.cantidad}">
+                            <p class="subtitle">Cantidad de alta</p>
+                            <input type="number" step="any" name="cantidad" required value="${alta.cantidad}">
                         </div>
                         <a href="${pageContext.request.contextPath}/ServletMenu?accion=agregarProducto&idProducto=${producto.idProducto}"></a>
                         <button type="submit">Registrar</button>

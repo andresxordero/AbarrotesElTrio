@@ -26,6 +26,9 @@ public class ServletAdministracion extends HttpServlet {
                 case "editarVendedor":
                     this.editarVendedor(request, response);
                     break;
+                case "modificarVendedor":
+                    this.modificarVendedor(request, response);
+                    break;
                 case "eliminarVendedor":
                     this.eliminarVendedor(request, response);
                     break;
@@ -33,10 +36,13 @@ public class ServletAdministracion extends HttpServlet {
                     this.registrarProveedorForm(request, response);
                     break;
                 case "registrarProveedor":
-                    this.registrarVendedor(request, response);
+                    this.registrarProveedor(request, response);
                     break;
                 case "editarProveedor":
                     this.editarProveedor(request, response);
+                    break;
+                case "modificarProveedor":
+                    this.modificarProveedor(request, response);
                     break;
                 case "eliminarProveedor":
                     this.eliminarProveedor(request, response);
@@ -86,6 +92,9 @@ public class ServletAdministracion extends HttpServlet {
                 case "editarVendedor":
                     this.editarVendedor(request, response);
                     break;
+                case "modificarVendedor":
+                    this.modificarVendedor(request, response);
+                    break;
                 case "eliminarVendedor":
                     this.eliminarVendedor(request, response);
                     break;
@@ -97,6 +106,9 @@ public class ServletAdministracion extends HttpServlet {
                     break;
                 case "editarProveedor":
                     this.editarProveedor(request, response);
+                    break;
+                case "modificarProveedor":
+                    this.modificarProveedor(request, response);
                     break;
                 case "eliminarProveedor":
                     this.eliminarProveedor(request, response);
@@ -123,7 +135,7 @@ public class ServletAdministracion extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
         String rol = request.getParameter("rol");
-        
+
         //Creamos el objeto de cliente (modelo)
         Vendedor vendedor = new Vendedor(nombre, apellido, telefono, usuario, password, rol);
 
@@ -140,13 +152,13 @@ public class ServletAdministracion extends HttpServlet {
         String jspRegistrar = "/WEB-INF/paginas/proveedores/formProveedores.jsp";
         request.getRequestDispatcher(jspRegistrar).forward(request, response);
     }
-    
+
     private void registrarProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
         String correo = request.getParameter("correo");
         String telefono = request.getParameter("telefono");
-        
+
         //Creamos el objeto de cliente (modelo)
         Proveedor proveedor = new Proveedor(nombre, telefono, correo);
 
@@ -164,8 +176,30 @@ public class ServletAdministracion extends HttpServlet {
         int idVendedor = Integer.parseInt(request.getParameter("idVendedor"));
         Vendedor vendedor = new VendedorDAO().encontrar(new Vendedor(idVendedor));
         request.setAttribute("vendedor", vendedor);
-        String jspEditar = "/WEB-INF/paginas/vendedores/formVendedores.jsp";
+        String jspEditar = "/WEB-INF/paginas/vendedores/formVendedoresUpdate.jsp";
         request.getRequestDispatcher(jspEditar).forward(request, response);
+    }
+
+    private void modificarVendedor(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperamos los valores del formulario editarCliente
+        int idVendedor = Integer.parseInt(request.getParameter("idVendedor"));
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String telefono = request.getParameter("telefono");
+        String usuario = request.getParameter("usuario");
+        String password = request.getParameter("password");
+        String rol = request.getParameter("rol");
+
+        //Creamos el objeto de cliente (modelo)
+        Vendedor vendedor = new Vendedor(idVendedor, nombre, apellido, telefono, usuario, password, rol);
+
+        //Modificar el  objeto en la base de datos
+        int registrosModificados = new VendedorDAO().actualizar(vendedor);
+        System.out.println("registrosModificados = " + registrosModificados);
+
+        //Redirigimos hacia accion por default
+        this.accionDefault(request, response);
     }
 
     private void editarProveedor(HttpServletRequest request, HttpServletResponse response)
@@ -174,8 +208,27 @@ public class ServletAdministracion extends HttpServlet {
         int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
         Proveedor proveedor = new ProveedorDAO().encontrar(new Proveedor(idProveedor));
         request.setAttribute("proveedor", proveedor);
-        String jspEditar = "/WEB-INF/paginas/proveedores/formProveedores.jsp";
+        String jspEditar = "/WEB-INF/paginas/proveedores/formProveedoresUpdate.jsp";
         request.getRequestDispatcher(jspEditar).forward(request, response);
+    }
+    
+    private void modificarProveedor(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperamos los valores del formulario editarCliente
+        int idProveedor = Integer.parseInt(request.getParameter("idProveedor"));
+        String nombre = request.getParameter("nombre");
+        String telefono = request.getParameter("telefono");
+        String correo = request.getParameter("correo");
+
+        //Creamos el objeto de cliente (modelo)
+        Proveedor proveedor = new Proveedor(idProveedor, nombre, telefono, correo);
+
+        //Modificar el  objeto en la base de datos
+        int registrosModificados = new ProveedorDAO().actualizar(proveedor);
+        System.out.println("registrosModificados = " + registrosModificados);
+
+        //Redirigimos hacia accion por default
+        this.accionDefault(request, response);
     }
 
     private void eliminarVendedor(HttpServletRequest request, HttpServletResponse response)

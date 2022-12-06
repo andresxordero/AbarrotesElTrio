@@ -13,7 +13,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="shortcut icon" href="assets/img/icono.ico" type="image/x-icon">
-  <title>Registro de proveedor</title>
+  <title>Actualizar registro de producto</title>
 </head>
 
 <body>
@@ -30,34 +30,33 @@
         <%
             }
         %>
- 
   <div class="general">
       <section>
     <div class="container">
-      <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarProveedor&idProveedor=${proveedor.idProveedor}" method="POST">
-        <h2>Registrar proveedor</h2>
+      <form class="form" action="${pageContext.request.contextPath}/ServletInventario?accion=modificarProducto&idProducto=${producto.idProducto}" method="POST">
+        <h2>Actualizar producto</h2>
         <div class="inputBox">
-            <p class="subtitle">Nombre del proveedor</p>
-          <input type="text" name="nombre" required value="${proveedor.nombre}">
+            <p class="subtitle">Nombre del producto</p>
+            <input type="text" name="nombre"  required value="${producto.nombre}">
         </div>
         <div class="inputBox">
-            <p class="subtitle">Teléfono del proveedor</p>
-          <input type="number" name="telefono" required value="${proveedor.telefono}">
+            <p class="subtitle">Descripción del producto</p>
+            <input type="text" name="descripcion"  required value="${producto.descripcion}">
         </div>
         <div class="inputBox">
-            <p class="subtitle">Correo del proveedor</p>
-          <input type="email" name="correo" required value="${proveedor.correo}">
+            <p class="subtitle">Precio de Venta</p>
+            <input type="number" step="any" name="precioVenta" required value="${producto.precioVenta}">
         </div>
-        <button type="submit">Registrar</button>
+        <div class="inputBox">
+            <p class="subtitle">Precio de Compra</p>
+            <input type="number" step="any" name="precioCompra" required value="${producto.precioCompra}">
+        </div>
+        <button type="submit">Actualizar</button>
       </form>
-    </div>
     </div>
   </section>
   </div>
 </body>
 
 </html>
-  
-
-  
   

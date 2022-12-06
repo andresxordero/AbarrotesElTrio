@@ -13,7 +13,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="shortcut icon" href="assets/img/icono.ico" type="image/x-icon">
-  <title>Panel de Inventario</title>
+  <title>Registro de producto</title>
 </head>
 
 <body>
@@ -36,19 +36,20 @@
       <form class="form" action="${pageContext.request.contextPath}/ServletInventario?accion=registrarProducto&idProducto=${producto.idProducto}" method="POST">
         <h2>Registrar producto</h2>
         <div class="inputBox">
-            <input type="text" name="nombre" placeholder="Nombre" required value="${producto.nombre}">
+            <p class="subtitle">Nombre del producto</p>
+            <input type="text" name="nombre" required value="${producto.nombre}">
         </div>
         <div class="inputBox">
-            <input type="text" name="descripcion" placeholder="Descripción" required value="${producto.descripcion}">
+            <p class="subtitle">Descripción del producto</p>
+            <input type="text" name="descripcion" required value="${producto.descripcion}">
         </div>
         <div class="inputBox">
-            <input type="number" step="any" name="existencias" placeholder="Existencias" required value="${producto.existencias}">
+            <p class="subtitle">Precio de venta</p>
+            <input type="number" step="any" name="precioVenta" required value="${producto.precioVenta}">
         </div>
         <div class="inputBox">
-            <input type="number" step="any" name="precioVenta" placeholder="Precio de venta" required value="${producto.precioVenta}">
-        </div>
-        <div class="inputBox">
-            <input type="number" step="any" name="precioCompra" placeholder="Precio de compra" required value="${producto.precioCompra}">
+            <p class="subtitle">Precio de compra</p>
+            <input type="number" step="any" name="precioCompra"  required value="${producto.precioCompra}">
         </div>
         <button type="submit">Registrar</button>
       </form>

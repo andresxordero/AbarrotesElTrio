@@ -13,7 +13,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="shortcut icon" href="assets/img/icono.ico" type="image/x-icon">
-  <title>Registro de proveedor</title>
+  <title>Actualizar registro de proveedor</title>
 </head>
 
 <body>
@@ -34,8 +34,8 @@
   <div class="general">
       <section>
     <div class="container">
-      <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarProveedor&idProveedor=${proveedor.idProveedor}" method="POST">
-        <h2>Registrar proveedor</h2>
+      <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=modificarProveedor&idProveedor=${proveedor.idProveedor}" method="POST">
+        <h2>Actualizar proveedor</h2>
         <div class="inputBox">
             <p class="subtitle">Nombre del proveedor</p>
           <input type="text" name="nombre" required value="${proveedor.nombre}">
@@ -48,7 +48,7 @@
             <p class="subtitle">Correo del proveedor</p>
           <input type="email" name="correo" required value="${proveedor.correo}">
         </div>
-        <button type="submit">Registrar</button>
+        <button type="submit">Actualizar</button>
       </form>
     </div>
     </div>

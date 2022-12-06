@@ -1,4 +1,3 @@
-
 <%@page import="dominio.Vendedor"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +12,12 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="shortcut icon" href="assets/img/icono.ico" type="image/x-icon">
-  <title>Registro de proveedor</title>
+  <title>Actualizar registro de vendedor</title>
 </head>
 
 <body>
-     <%
+     
+        <%
             HttpSession sesion = request.getSession();
             Vendedor usuario = (Vendedor) sesion.getAttribute("usuario");
             if (usuario.getRol().equals("Administrador")) {
@@ -30,27 +30,38 @@
         <%
             }
         %>
- 
+        
   <div class="general">
       <section>
     <div class="container">
-      <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarProveedor&idProveedor=${proveedor.idProveedor}" method="POST">
-        <h2>Registrar proveedor</h2>
+      <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=modificarVendedor&idVendedor=${vendedor.idVendedor}" method="POST">
+        <h2>Actualizar vendedor</h2>
         <div class="inputBox">
-            <p class="subtitle">Nombre del proveedor</p>
-          <input type="text" name="nombre" required value="${proveedor.nombre}">
+            <p class="subtitle">Nombre del vendedor</p>
+            <input type="text" name="nombre" required value="${vendedor.nombre}">
         </div>
         <div class="inputBox">
-            <p class="subtitle">Teléfono del proveedor</p>
-          <input type="number" name="telefono" required value="${proveedor.telefono}">
+            <p class="subtitle">Apellido del vendedor</p>
+            <input type="text" name="apellido" required value="${vendedor.apellido}">
         </div>
         <div class="inputBox">
-            <p class="subtitle">Correo del proveedor</p>
-          <input type="email" name="correo" required value="${proveedor.correo}">
+            <p class="subtitle">Teléfono del vendedor</p>
+            <input type="number" name="telefono" required value="${vendedor.telefono}">
         </div>
-        <button type="submit">Registrar</button>
+        <div class="inputBox">
+            <p class="subtitle">Nombre de usuario del vendedor</p>
+            <input type="text" name="usuario" required value="${vendedor.usuario}">
+        </div>
+        <div class="inputBox">
+            <p class="subtitle">Contraseña del vendedor</p>
+            <input type="text" name="password" required value="${vendedor.password}">
+        </div>
+        <div class="inputBox">
+            <p class="subtitle">Rol del vendedor</p>
+            <input type="text" name="rol" required value="${vendedor.rol}">
+        </div>
+        <button type="submit">Actualizar</button>
       </form>
-    </div>
     </div>
   </section>
   </div>
@@ -59,5 +70,4 @@
 </html>
   
 
-  
   

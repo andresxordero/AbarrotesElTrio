@@ -12,7 +12,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="shortcut icon" href="assets/img/icono.ico" type="image/x-icon">
-  <title>Panel de Inventario</title>
+  <title>Registro de vendedor</title>
 </head>
 
 <body>
@@ -37,22 +37,28 @@
       <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarVendedor&idVendedor=${vendedor.idVendedor}" method="POST">
         <h2>Registrar vendedor</h2>
         <div class="inputBox">
-            <input type="text" name="nombre" placeholder="Nombre" required value="${vendedor.nombre}">
+            <p class="subtitle">Nombre del vendedor</p>
+            <input class="input2" type="text" name="nombre" required value="${vendedor.nombre}">
         </div>
         <div class="inputBox">
-            <input type="text" name="apellido" placeholder="Apellido" required value="${vendedor.apellido}">
+            <p class="subtitle">Apellido del vendedor</p>
+            <input type="text" name="apellido" required value="${vendedor.apellido}">
         </div>
         <div class="inputBox">
-            <input type="number" name="telefono" placeholder="Teléfono" required value="${vendedor.telefono}">
+            <p class="subtitle">Teléfono del vendedor</p>
+            <input type="number" name="telefono" required value="${vendedor.telefono}">
         </div>
         <div class="inputBox">
-            <input type="text" name="usuario" placeholder="Nombre de usuario" required value="${vendedor.usuario}">
+            <p class="subtitle">Nombre de usuario del vendedor</p>
+            <input type="text" name="usuario" required value="${vendedor.usuario}">
         </div>
         <div class="inputBox">
-            <input type="text" name="password" placeholder="Contraseña" required value="${vendedor.password}">
+            <p class="subtitle">Contraseña del vendedor</p>
+            <input type="text" name="password" required value="${vendedor.password}">
         </div>
         <div class="inputBox">
-            <input type="text" name="rol" placeholder="Rol" required value="${vendedor.rol}">
+            <p class="subtitle">Rol del vendedor</p>
+            <input type="text" name="rol" required value="${vendedor.rol}">
         </div>
         <button type="submit">Registrar</button>
       </form>

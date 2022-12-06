@@ -121,7 +121,7 @@ public class ProveedorDAO {
             stmt.setString(1, proveedor.getNombre());
             stmt.setString(2, proveedor.getTelefono());
             stmt.setString(3, proveedor.getCorreo());
-            stmt.setInt(6, proveedor.getIdProveedor());
+            stmt.setInt(4, proveedor.getIdProveedor());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {

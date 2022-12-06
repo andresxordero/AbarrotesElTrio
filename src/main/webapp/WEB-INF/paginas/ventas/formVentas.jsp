@@ -21,11 +21,10 @@
 
             <p id="pdos" >Cantidad</p>
             <section id = "ventas"> 
-
-                <div class="texbox1" style="margin-top: 5rem;">
+                <div class="texbox1">
                     <select name="idProductos" id="idProductos">
                         <c:forEach var="producto" items="${productos}" varStatus="status">
-                            <option value="${producto.idProducto}">${producto.idProducto}</option>
+                            <option value="${producto.idProducto}">${producto.idProducto} (${producto.nombre})</option>
                         </c:forEach>
                     </select>
                 </div>

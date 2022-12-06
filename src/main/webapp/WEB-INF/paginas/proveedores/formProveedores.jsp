@@ -13,7 +13,7 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="shortcut icon" href="assets/img/icono.ico" type="image/x-icon">
-  <title>Panel de Inventario</title>
+  <title>Registro de proveedor</title>
 </head>
 
 <body>
@@ -37,13 +37,16 @@
       <form class="form" action="${pageContext.request.contextPath}/ServletAdministracion?accion=registrarProveedor&idProveedor=${proveedor.idProveedor}" method="POST">
         <h2>Registrar proveedor</h2>
         <div class="inputBox">
-          <input type="text" name="nombre" placeholder="Nombre" required value="${proveedor.nombre}">
+            <p class="subtitle">Nombre del proveedor</p>
+          <input type="text" name="nombre" required value="${proveedor.nombre}">
         </div>
         <div class="inputBox">
-          <input type="number" name="telefono" placeholder="Telefono" required value="${proveedor.telefono}">
+            <p class="subtitle">Teléfono del proveedor</p>
+          <input type="number" name="telefono" required value="${proveedor.telefono}">
         </div>
         <div class="inputBox">
-          <input type="email" name="correo" placeholder="Correo" required value="${proveedor.correo}">
+            <p class="subtitle">Correo del proveedor</p>
+          <input type="email" name="correo" required value="${proveedor.correo}">
         </div>
         <button type="submit">Registrar</button>
       </form>
